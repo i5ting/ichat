@@ -1,0 +1,41 @@
+{
+  "data": {
+    "user": {
+      "uid": "1",
+      "name": "世龙",
+      "avarta": "shilong.png",
+      "address": "beijing"
+    },
+    "messages": [
+      {
+        "uid": "12",
+        "type": "text",
+        "content": {
+					"text":"beijing"
+				}
+      },
+      {
+        "uid": "13",
+        "name": "marco",
+        "avarta": "ahu.png",
+        "address": "beijing"
+      },
+      {
+        "uid": "14",
+        "name": "李文虎",
+        "avarta": "ahu.png",
+        "address": "beijing"
+      },
+      {
+        "uid": "15",
+        "name": "张卓",
+        "avarta": "ahu.png",
+        "address": "beijing"
+      }
+    ]
+  },
+  "status": {
+    "code": 0,
+    "msg": "success"
+  }
+}

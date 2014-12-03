@@ -4,7 +4,7 @@
   "description": "ichat =====",
   "main": "index.js",
   "scripts": {
-		"api": "http-server api -p 4566 -o",
+		"api": "http-server api  --cors -p 4566 -o",
 		"start": "http-server src -p 4568 -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

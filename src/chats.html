@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>聊天页面</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./lib/css/ratchet.min.css">
+    <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
+    <link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/chat.css">
+	<script src="http://at35.com:4567/faye/client.js"></script>
+	<script src="./lib/js/zepto.min.js"></script>
+    <script src="./lib/js/ratchet.min.js"></script>
+    <script src="./lib/js/sifter.min.js"></script>
+	<script src="./lib/js/iChatClient.js"></script>
+	<script src="./js/chat.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left" href="index.html" data-ignore="push" data-transition="slide-out"></a>
+      <a class="icon icon-more pull-right" href="group.html" data-ignore="push"></a>
+      <h1 class="title">桂丽</h1>
+    </header>
+		
+		
+    <div class="content">
+
+   
+		 <ul class="chat-container tab-pane active" id="01">
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem rightitem clearfix">
+		 				<div class="msg-content-header pull-right"></div>
+		 				<div class="msg-content-body pull-right">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkjdjfkdskffjdkssfdsfdsfsefsfjdjfkdkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfdsfsefsfssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 				<div class="clear"></div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem rightitem clearfix">
+		 				<div class="msg-content-header pull-right"></div>
+		 				<div class="msg-content-body pull-right">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkjdjfkdskffjdkssfdsfdsfsefsfjdjfkdkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfdsfsefsfssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 				<div class="clear"></div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkjdjfkdskffjdkssfdsfdsfsefsfjdjfkdkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfdsfsefsfssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 			<li class="msgitem rightitem clearfix">
+		 				<div class="msg-content-header pull-right"></div>
+		 				<div class="msg-content-body pull-right">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkjdjfkdskffjdkssfdsfdsfsefsfjdjfkdkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfdsfsefsfssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 				<div class="clear"></div>
+		 			</li>
+					
+		 			<li class="msgitem leftitem clearfix">
+		 				<div class="chathead pull-left">
+		 					<a target="_blank" href="#">
+		 						<img src="../images/defaultimg.jpg" alt="">
+		 					</a>
+		 				</div>
+		 				<div class="msg-content-header pull-left"></div>
+		 				<div class="msg-content-body pull-left">
+		 					<a class="close" href="#" style="display: none;"></a>
+		 					<div class="msg-content">
+		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<span class="chat-time text-right">2012-5-28 3:35</span>
+		 					</div>
+		 				</div>
+		 			</li>
+		 		</ul>
+				
+    </div><!-- /.content -->
+
+    <div class="bar bar-footer">
+        <div class="camera_icon">
+          <a href="javascript:;"></a>
+        </div>
+        <div class="input_boder">
+          <input type="text"/>
+        </div>
+        <button class="send_msg_btn">发送</button>
+    </div>
+  </body>
+</html>

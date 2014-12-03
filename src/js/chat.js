@@ -7,6 +7,36 @@ Zepto(function($){
 		retry		: 5
 	});
 
+	
+	function bind_send_msg_event(){
+		$('.send_msg_btn').click(function(){
+			alert('send_msg_btn');
+			client.send('foo',{
+				text:'dssdjfkjkl'
+			},function(){
+				alert('Message received by server!');
+			},function(error){
+				alert('There was a problem: ' + error.message);
+			});
+		});
+	}
+	
+	setTimeout(function(){
+		client.send('foo',{
+			text:'dssdjfkjkl'
+		},function(){
+			alert('Message received by server!');
+		},function(error){
+			alert('There was a problem: ' + error.message);
+		});
+	},1000);
+	
+	function leave(){
+		client.leave('foo');
+	}
+	
+	init();
+	
 	function init(){
 		client.join('foo', function(message) {
 		  // handle message
@@ -18,21 +48,4 @@ Zepto(function($){
 		bind_send_msg_event();
 	}
 	
-	function bind_send_msg_event(){
-		$('发送按钮').click(function(){
-				client.send('foo',{
-					text:'dssdjfkjkl'
-				},function(){
-					alert('Message received by server!');
-				},function(error){
-					alert('There was a problem: ' + error.message);
-				});
-		});
-	}
-	
-	function leave(){
-		client.leave('foo');
-	}
-	
-	init();
 });

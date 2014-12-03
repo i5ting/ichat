@@ -5,14 +5,32 @@ Zepto(function($){
 		console.log('[LOG] '+ t);
 	}
 	
+	function get_sessions_info(){
+		$.get('http://at35.com:4566/session.json',function(data){
+			log(data);
+			save_data_to_local_storage(data);	
+			
+			// 会话
+			var sessions = data.data.sessions;
+			list(sessions);
+		});
+	}
 	
-	$.get('http://at35.com:4566/session.json',function(data){
-		log(data);
+	function save_data_to_local_storage(data){
+		window.localStorage.setItem();
 		
+	}
+	
+	function storage_current_user(data){
+		window.localStorage.setItem();
+		
+	}
+	
+	function storage_user_sesssion(data){
 		var sessions = data.data.sessions;
+		window.localStorage.setItem();
 		
-		list(sessions);
-	});
+	}
 	
 	function list(sessions){
 		for(var i in sessions){
@@ -69,8 +87,17 @@ Zepto(function($){
 		return html;
 	}
 	
-	$('a').click(function(){
-		alert(1);
+	$('a').live('click',function(){
+		var c = $(this).parent();
+		var i  = $('#chat_session_container').children('li').index(c)
+			
+		alert(i);
 	});
 	
+	function main(){
+		// 获取session列表
+		get_sessions_info();
+	}
+	
+	main();
 });

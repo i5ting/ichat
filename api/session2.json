@@ -1,0 +1,82 @@
+{
+  "data": {
+    "user": {
+      "uid": "2",
+      "name": "marco",
+      "avarta": "marco.png",
+      "address": "world"
+    },
+    "sessions": [
+      {
+        "sid": "100000001",
+        "name": "新浪网财经部门讨论组",
+        "type": "p2g",
+        "avatar": "avatar_finance.png",
+        "last_message": "这是一个那啥的是群，讨论一些关于采集的事儿",
+        "last_update_time": "2014-12-02 14:18:05",
+        "users": [
+          {
+            "uid": "12",
+            "name": "阿虎",
+            "avarta": "ahu.png",
+            "address": "beijing"
+          },
+          {
+            "uid": "13",
+            "name": "marco",
+            "avarta": "ahu.png",
+            "address": "beijing"
+          },
+          {
+            "uid": "14",
+            "name": "李文虎",
+            "avarta": "ahu.png",
+            "address": "beijing"
+          },
+          {
+            "uid": "15",
+            "name": "张卓",
+            "avarta": "ahu.png",
+            "address": "beijing"
+          }
+        ]
+      },
+      {
+        "sid": "100000002",
+        "name": "高宁",
+        "type": "p2p",
+        "avatar": "avatar_gaoning.png",
+        "last_message": "我是高宁，要加你为好友",
+        "last_update_time": "2014-12-02 4:18:05",
+        "users": [
+          {
+            "uid": "19",
+            "name": "高宁",
+            "avarta": "gaoning.png",
+            "address": "beijing"
+          }
+        ]
+      },
+      {
+        "sid": "100000003",
+        "name": "柯织",
+        "type": "p2p",
+        "avatar": "avatar_kezhi.png",
+        "last_message": "我是柯织，我是胖子，来公司很久很久了，技术还行，就是很懒，领导我错了，屡教不改，你批评我吧",
+        "last_update_time": "2014-12-02 11:18:05",
+        "users": [
+          {
+            "uid": "19",
+            "name": "高宁",
+            "avarta": "gaoning.png",
+            "address": "beijing"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "code": 0,
+    "msg": "success"
+  }
+}

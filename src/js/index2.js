@@ -6,7 +6,7 @@ Zepto(function($){
 	}
 	
 	function get_sessions_info(){
-		$.get('http://at35.com:4566/session.json',function(data){
+		$.get('http://at35.com:4566/session2.json',function(data){
 			log(data);
 			save_data_to_local_storage(data);	
 			

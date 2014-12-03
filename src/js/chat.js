@@ -1,5 +1,12 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
+
+	var current_user = CURRENT_USER.get_current_user();	
+	var current_session = CURRENT_SESSION.get_current_session();
+	var user_sessions = USER_SESSION.get_user_sessions();
+	
+	var current_user_uid = current_user['uid'];
+	var current_session_id = current_session['sid'];
 		
 	function log(t){
 		console.log('[LOG] '+ t);
@@ -10,6 +17,11 @@ Zepto(function($){
 		retry		: 5
 	});
 
+	function get_current_topic(){
+		return 'foo' + '+' + current_session_id;
+	}
+	
+	var current_topic = get_current_topic();
 	
 	function bind_send_msg_event(){
 		var input_text = $.trim($('#msg_input_text_id').val());
@@ -17,7 +29,7 @@ Zepto(function($){
 		
 		$('.send_msg_btn').click(function(){
 			// alert('send_msg_btn');
-			client.send('foo',{
+			client.send(current_topic,{
 				text: input_text
 			},function(){
 				// alert('Message received by server!');
@@ -29,7 +41,7 @@ Zepto(function($){
 
 	function test(){
 		setTimeout(function(){
-			client.send('foo',{
+			client.send(current_topic, {
 				text:'dssdjfkjkl'
 			},function(){
 				// alert('Message received by server!');

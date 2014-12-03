@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>本地会话</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="./lib/css/ratchet.min.css">
+    <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
+    <link rel="stylesheet" href="css/app.css">
+		<script src="http://at35.com:4567/faye/client.js"></script>
+		<script src="./lib/js/zepto.min.js"></script>
+    <script src="./lib/js/ratchet.min.js"></script>
+    <script src="./lib/js/sifter.min.js"></script>
+		<script src="./lib/js/iChatClient.js"></script>
+		<script src="./js/localstorage.js"></script>
+		<script src="./js/index2.js"></script>
+		<script>
+		window.addEventListener('push', function(){
+			alert(111);
+		});
+		</script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-plus pull-right"></a>
+      <h1 class="title">首页</h1>
+    </header>
+    <div class="content">
+      <ul class="table-view" id='chat_session_container'>
+				<!-- 隐藏作为静态模板 -->
+        <!-- <li class="table-view-cell">
+          <a href="chat.html" data-ignore="push">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+              单人<span>昨天12:00</span>
+              <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+          </a>
+        </li>
+        <li class="table-view-cell">
+          <a href="chats.html" data-ignore="push">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+              多人<span>昨天12:00</span>
+              <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+          </a>
+        </li>
+        <li class="table-view-cell">
+          <a href="chat.html" data-ignore="push">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+              Item 1<span>昨天12:00</span>
+              <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+          </a>
+        </li>
+        <li class="table-view-cell">
+          <a href="chat.html" data-ignore="push">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+              Item 1<span>昨天12:00</span>
+              <p>Lorem ipsum dolor sit amet...</p>
+            </div>
+          </a>
+        </li> -->
+      </ul>
+    </div><!-- /.content -->
+
+    <nav class="bar bar-tab">
+      <a class="tab-item active" href="#">
+        <span class="icon icon-home"></span>
+        <span class="tab-label">Home</span>
+      </a>
+      <a class="tab-item" href="#">
+        <span class="icon icon-person"></span>
+        <span class="tab-label">Profile</span>
+      </a>
+      <a class="tab-item" href="#">
+        <span class="icon icon-star-filled"></span>
+        <span class="tab-label">Favorites</span>
+      </a>
+      <a class="tab-item" href="#">
+        <span class="icon icon-search"></span>
+        <span class="tab-label">Search</span>
+      </a>
+    </nav>
+  </body>
+</html>

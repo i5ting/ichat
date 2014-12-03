@@ -10,30 +10,34 @@
 .table-view-cell .icon {
   color: #007aff;
 }
-<<<<<<< HEAD
 
-.chat_footer input{
-	width: 80%;
-	margin-top: 6px;
-	height: 30px;
+.table-view-cell a img{
+	border-radius: 5px;
 }
 
-=======
+.media-body span{
+  font-size: 14px;
+  float: right;
+}
+
 /*聊天详情*/
->>>>>>> 384995c34e93651f01bc695feefec09e1cd11293
+
 .card_avarta{
-	padding: 10px 20px 0;
+	padding: 10px 10px 0;
 }
 
 .card_avarta p{
 	margin-left: 12px;
 }
-<<<<<<< HEAD
-span{
-  
-  font-size: 14px;
-  float: right;
-=======
+
+/*多人聊天详情*/
+
+.card_avarta ul li{
+	list-style: none;
+	float: left;
+	margin-right: 15px;
+}
+
 /*底部输入框*/
 .camera_icon {
 	position: absolute;
@@ -80,5 +84,4 @@ span{
 	background: none;
 	border: none;
 	font-size: 16px;
->>>>>>> 384995c34e93651f01bc695feefec09e1cd11293
 }

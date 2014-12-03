@@ -3,6 +3,16 @@ ichat
 
 test
 
+## run
+
+启动服务器（src目录下面）
+
+	npm start 
+	
+启动静态接口服务（api目录下面）
+
+	npm run api
+
 ## 技术栈
 
 - http://goratchet.com/

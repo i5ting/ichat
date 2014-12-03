@@ -83,7 +83,7 @@ ul,li{
 	margin-bottom: 10px;
 }
 .msgitem .msg-content-body {
-	max-width: 316px;
+	max-width: 80%;
 	min-width: 80px;
 	position: relative;
 	-webkit-transition-property: all;

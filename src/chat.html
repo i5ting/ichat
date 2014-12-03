@@ -15,8 +15,8 @@
   </head>
   <body>
     <header class="bar bar-nav">
-      <a class="icon icon-left-nav pull-left" href="index.html" data-transition="slide-out"></a>
-      <a class="icon icon-person pull-right" href="details.html"></a>
+      <a class="icon icon-left-nav pull-left" href="index.html" data-ignore="push" data-transition="slide-out"></a>
+      <a class="icon icon-person pull-right" href="details.html" data-ignore="push"></a>
       <h1 class="title">桂丽</h1>
     </header>
 		
@@ -147,7 +147,7 @@
 		 				<div class="msg-content-body pull-left">
 		 					<a class="close" href="#" style="display: none;"></a>
 		 					<div class="msg-content">
-		 						<p class="abstract">jdjfkdskffjdkssfdsfdsfsefsf</p>
+		 						<p class="abstract">jdjfkdskffjdkjdjfkdskffjdkssfdsfdsfsefsfjdjfkdkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfkffjdkssfdsfdsfsefsfjdjfkdskffjdkssfdsfdsfsefsfssfdsfdsfsefsf</p>
 		 						<span class="chat-time text-right">2012-5-28 3:35</span>
 		 					</div>
 		 				</div>
@@ -200,10 +200,21 @@
     </div><!-- /.content -->
 
     <div class="bar bar-footer">
-      <a class="icon icon-compose pull-right" href="#composeModal"></a>
-      <small class="updated-text">Updated just now</small>
+      <form class="chat_footer">
+        <input type="text">
+        <a class="icon icon-plus pull-right" href="#composeModal"></a>
+      </form>
     </div>
 
-    </div><!-- /.modal -->
+    <!-- <div class="content">
+      <div class="chat_content">
+            <img class="media-object pull-left" src="http://placehold.it/42x42">
+            <div class="media-body">
+              Item 1
+            </div>
+      </div>
+
+
+    </div> -->
   </body>
 </html>

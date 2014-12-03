@@ -10,3 +10,17 @@
 .table-view-cell .icon {
   color: #007aff;
 }
+
+.chat_footer input{
+	width: 90%;
+	margin-top: 8px;
+	height: 30px;
+}
+
+.card_avarta{
+	padding: 10px 20px 0;
+}
+
+.card_avarta p{
+	margin-left: 12px;
+}

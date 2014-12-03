@@ -62,3 +62,14 @@ type
  			</li>
 
 
+
+## 测试方法
+
+必须是2端口，不然current user会重复的。
+
+用户1：index.html 
+
+用户2：index2.html 
+
+
+开始聊吧

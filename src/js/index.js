@@ -65,11 +65,6 @@ Zepto(function($){
 	
 	function get_p2p_html(session){
 		var chat_page = 'chat.html';
-		if(session['sid'] == '100000003'){
-			//TODO: only for test
-			chat_page = 'chat1.html';
-		}
-		
 		var html = "<li class='table-view-cell'>"
           +"<a href='" + chat_page + "' data-ignore='push'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
@@ -102,19 +97,7 @@ Zepto(function($){
 		var i  = $('#chat_session_container').children('li').index(c)
 		
 		var sesssion = window.sessions[i];
-		
-		if(sesssion['sid'] == '100000003'){
-			//TODO: only for test
-			
-			var c = {
-	      "uid": "2",
-	      "name": "marco.yin",
-	      "avarta": "marco.png",
-	      "address": "world"
-	    }
-			
-			CURRENT_USER.set_current_user(c);
-		}
+
 		storage_current_sesssion(sesssion);
 		log('选择了第 '+i + ' 个会话。');
 	});

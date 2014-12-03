@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
 		"api": "http-server api  --cors -p 4566 -o",
-		"start": "http-server src -p 4568 -o",
+		"start": "npm run start1 && npm run start2",
+		"stop":"pgrep node|xargs kill -9",
+		"start1": "http-server src -p 4568 -o & ",
+		"start2": "http-server src -p 4569 -o & ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

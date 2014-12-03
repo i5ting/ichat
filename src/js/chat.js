@@ -18,19 +18,20 @@ Zepto(function($){
 	});
 
 	function get_current_topic(){
-		return 'foo' + '+' + current_session_id;
+		return 'foo' + '_' + current_session_id;
 	}
 	
 	var current_topic = get_current_topic();
 	
 	function bind_send_msg_event(){
-		var input_text = $.trim($('#msg_input_text_id').val());
-		log('发送信息内容是：'+input_text);
-		
 		$('.send_msg_btn').click(function(){
+			var input_text = $.trim($('#msg_input_text_id').val());
+			log('发送信息内容是：'+input_text);
+		
 			// alert('send_msg_btn');
 			client.send(current_topic,{
-				text: input_text
+				text: input_text,
+				uid : current_user_uid
 			},function(){
 				// alert('Message received by server!');
 			},function(error){
@@ -56,9 +57,15 @@ Zepto(function($){
 	}
 	
 	function write_msg_content_to_dom(msg){
+		// 默认是别人，左侧
 		var is_myself = false;
 		
-		if(is_myself == true){
+		// 如果当前是自己，则右侧
+		if(msg.uid == current_user_uid){
+			is_myself = true;
+		}
+		
+		if(is_myself == false){
 			write_left_msg_content_to_dom(msg);
 		}else{
 			write_right_msg_content_to_dom(msg);
@@ -101,15 +108,22 @@ Zepto(function($){
 		$('#chat_container_id').append(received_msg_html);
 	}
 	
-		
+	function scroll_to_bottom(){
+		var h = $(window).height() - 120 - $('#chat_container_id').height();
+ 
+		if(h < 0){
+			 $('#chat_container_id').css({'margin-top': h +'px'});
+		}
+	}
 	
 	init();
 	
 	function init(){
-		client.join('foo', function(message) {
+		client.join(current_topic, function(message) {
 		  // handle message
 			// alert(message.text);
 			write_msg_content_to_dom(message);
+			scroll_to_bottom();
 			log('收到的信息是：'+message.text);
 		});
 		

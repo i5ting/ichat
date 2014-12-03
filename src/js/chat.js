@@ -13,19 +13,24 @@ Zepto(function($){
 			alert(message.text);
 			console.log(message);
 		});
+		
+		// 绑定发送按钮事件
+		bind_send_msg_event();
 	}
 	
-	$('发送按钮').click(function(){
-			client.send('foo',{
-				text:'dssdjfkjkl'
-			},function(){
-				alert('Message received by server!');
-			},function(error){
-				alert('There was a problem: ' + error.message);
-			});
-	});
+	function bind_send_msg_event(){
+		$('发送按钮').click(function(){
+				client.send('foo',{
+					text:'dssdjfkjkl'
+				},function(){
+					alert('Message received by server!');
+				},function(error){
+					alert('There was a problem: ' + error.message);
+				});
+		});
+	}
 	
-	function leave = function(){
+	function leave(){
 		client.leave('foo');
 	}
 	

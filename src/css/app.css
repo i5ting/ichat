@@ -10,6 +10,7 @@
 .table-view-cell .icon {
   color: #007aff;
 }
+<<<<<<< HEAD
 
 .chat_footer input{
 	width: 80%;
@@ -17,6 +18,9 @@
 	height: 30px;
 }
 
+=======
+/*聊天详情*/
+>>>>>>> 384995c34e93651f01bc695feefec09e1cd11293
 .card_avarta{
 	padding: 10px 20px 0;
 }
@@ -24,8 +28,57 @@
 .card_avarta p{
 	margin-left: 12px;
 }
+<<<<<<< HEAD
 span{
   
   font-size: 14px;
   float: right;
+=======
+/*底部输入框*/
+.camera_icon {
+	position: absolute;
+	top: 12px;
+	left: 13px;
+}
+
+.camera_icon a {
+	display: block;
+	width: 24px;
+	height: 19px;
+	background: url(../images/icon_camera1.png) no-repeat;
+	background-size: 24px 19px;
+}
+
+ .input_boder {
+	height: 29px;
+	border: 1px solid #e6e7e8;
+	border-radius: 4px;
+	float: left;
+	position: absolute;
+	top: 6px;
+	left: 47px;
+	right: 55px;
+	padding: 0 9px;
+}
+
+.input_boder input {
+	width: 100%;
+	height: 29px;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	background: transparent;
+}
+
+ .send_msg_btn {
+	position: absolute;
+	top: 6px;
+	right: 5px;
+	width: 50px;
+	line-height: 30px;
+	text-align: center;
+	background: none;
+	border: none;
+	font-size: 16px;
+>>>>>>> 384995c34e93651f01bc695feefec09e1cd11293
 }

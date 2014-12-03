@@ -1,5 +1,5 @@
 var client = new iChatClient({
-	url : 'http://127.0.0.1:4567/faye',
+	url : 'http://at35.com:4567/faye',
 	timeout : 120,
 	retry		: 5
 });
@@ -21,3 +21,8 @@ setTimeout(function(){
 
 	// client.leave('foo');
 },2000);
+
+
+Zepto(function($){
+  console.log('Ready to Zepto!')
+})

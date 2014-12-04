@@ -22,7 +22,7 @@ window.CURRENT_USER = {
 		return get_object_with_key('CONST_CURRENT_USER');
 	},
 	get_current_user_uid:function(){
-		return this.get_current_user()['uid'];
+		return this.get_current_user()['_id'];
 	}
 }
 

@@ -5,8 +5,10 @@ Zepto(function($){
 	var current_session = CURRENT_SESSION.get_current_session();
 	var user_sessions = USER_SESSION.get_user_sessions();
 	
-	var current_user_uid = current_user['uid'];
+	var current_user_uid = current_user['_id'];
 	var current_session_id = current_session['sid'];
+	
+
 		
 	function log(t){
 		console.log('[LOG] '+ t);

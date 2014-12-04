@@ -3,6 +3,29 @@ mongoose-test
 
 this is a test example project for mongoose!
 
+
+## add user
+
+	post 
+	
+	http://127.0.0.1:5555/api/v0.1.0/users/new
+
+	// username: { type: String, required: true, index: { unique: true } },
+	// password: { type: String, required: true },
+	// avatar:String,
+	// address:String,
+	
+## user login
+
+	post 
+	
+	http://127.0.0.1:5555/api/v0.1.0/users/login
+
+	// username: sang
+	// password: 0
+
+
+
 ## 准备工作
 
 这部分主要是完成了构建项目骨架代码得任务，通过命令和少许文件更改，即可完成。

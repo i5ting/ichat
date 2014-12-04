@@ -25,9 +25,8 @@
 				alert(111);
 			});
       function replaceFun(strs){
-        var str = strs.indexOf('</br>');
-        if(strs.length > 20){
-          strs = strs.substr(0, 20)+'...';
+        if(strs.length > 10){
+          strs = strs.substr(0, 10)+'...';
         }
         return strs;
       }

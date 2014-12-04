@@ -25,17 +25,22 @@
 			window.addEventListener('push', function(){
 				alert(111);
 			});
-      // function replaceFun(strs){
-      //   if(strs.length > 10){
-      //     strs = strs.substr(0, 10)+'...';
-      //   }
-      //   return strs;
-      // }
 		</script>
   </head>
   <body>
+
     <header class="bar bar-nav">
       <a class="icon icon-plus pull-right"></a>
+      <div class="group_chat_box">
+      <ul class="table-view">
+          <li class="table-view-cell media">
+          <span class="media-object pull-left"><img src="images/tabbar_mainframe@2x.png" style="width:24px;"/></span>
+          <div class="media-body media_address_name">
+            佀桂丽
+          </div>
+      </li>
+      </ul>
+      </div>
       <h1 class="title">首页</h1>
     </header>
     <div class="content">
@@ -81,11 +86,11 @@
     </div><!-- /.content -->
 
     <nav class="bar bar-tab">
-      <a class="tab-item active" href="#">
+      <a class="tab-item" href="#">
         <span class="icon"><img src="images/tabbar_mainframe@2x.png" style="width:24px;"/></span>
         <span class="tab-label">微信</span>
       </a>
-      <a class="tab-item" href="#">
+      <a class="tab-item" href="address_book.html" data-ignore="push">
         <span class="icon"><img src="images/tabbar_contacts@2x.png" style="width:24px;"/></span>
         <span class="tab-label">通讯录</span>
       </a>

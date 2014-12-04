@@ -7,11 +7,8 @@ ul,li{
 	margin: 0;
 	list-style: none;
 }
-.container{
-	width: 980px;
-}
 
-
+/* for iscroll */
 #wrapper {
 	position: absolute;
 	z-index: 1;
@@ -23,6 +20,7 @@ ul,li{
 	overflow: hidden;
 }
 
+/* for iscroll */
 #scroller {
 	position: absolute;
 	z-index: 1;

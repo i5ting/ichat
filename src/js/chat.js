@@ -147,6 +147,9 @@ Zepto(function($){
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();
+		
+		// 首次进入，不管有多少消息，一定是到最后一条
+		scroll_to_bottom();
 	}
 	
 });

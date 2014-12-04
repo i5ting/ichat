@@ -18,20 +18,15 @@ Zepto(function($){
 	}
 	
 	function save_data_to_local_storage(data){
-		storage_current_user(data);
 		storage_user_sesssion(data);
 	}
 	
-	// 存储当前用户信息
-	function storage_current_user(data){
-		var current_user = data.data.user;
-		CURRENT_USER.set_current_user(current_user);
-	}
 	// 存储当前会话列表信息
 	function storage_user_sesssion(data){
 		var sessions = data.data.sessions;
 		USER_SESSION.set_user_sessions(sessions);
 	}
+	
 	// 存储当前会话信息
 	function storage_current_sesssion(sesssion){
 		CURRENT_SESSION.set_current_session(sesssion);

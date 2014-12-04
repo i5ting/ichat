@@ -43,6 +43,9 @@ body {
   color: #bbb;
 }
 
+.table-view-cell>a:not(.btn){
+	padding-right:10px;
+}
 /*聊天详情*/
 
 .card_avarta{

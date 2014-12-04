@@ -37,7 +37,13 @@ Zepto(function($){
 	$('#login_btn').click(function(){
 		var username = $("input[name='username']").val();
 		var	password = $("input[name='password']").val();
-		
+		log(username);
+		log(password);
 		login(username, password);
+	});
+	
+	$('#logout_btn').live('click',function(){
+		CURRENT_USER.remove_current_user();
+		window.location.href='me.html'
 	});
 });

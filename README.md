@@ -1,7 +1,9 @@
 ichat
 =====
 
-test
+it's an im client like webchat
+
+![](chat.gif)
 
 ## run
 

@@ -7,6 +7,11 @@ Zepto(function($){
 		console.log('[login.html LOG] '+ t);
 	}
 	
+	function login_success_callback(){
+		alert('登陆成功');
+		window.location.href='index.html'
+	}
+	
 	function login(username, password){
 		log(config.get_api_user_login_url());
 		$.post(config.get_api_user_login_url(),{
@@ -15,16 +20,13 @@ Zepto(function($){
 		},function(data){
 			// server response 
 			log(data);
-			save_data_to_local_storage(data);	
 			
 			if(data.status.code == 0){			
 				var current_user = data.data;
 				CURRENT_USER.set_current_user(current_user);
-			
-				// 会话
-				sessions  = data.data.sessions;
-				list(sessions);
-				window.sessions = sessions
+				
+				// 登陆成功
+				login_success_callback();
 			}else{
 				alert(data.status.msg);
 			}

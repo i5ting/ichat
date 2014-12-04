@@ -22,6 +22,7 @@
 		<script src="./js/localstorage.js"></script>
 		<script src="./js/fastclick_body.js"></script>
     <script src="./js/me.js"></script>
+		<script src="./js/login.js"></script>
   </head>
   <body>
     <header class="bar bar-nav">
@@ -32,12 +33,19 @@
 			 <div class="user_info_container">
 				 	loading...
 			 </div>
-       <form>
-         <input type="text" name='username' placeholder="用户名" value='sang'>
-         <input type="password" name='password' placeholder="密码" value='000000'>
-      </form>    
-      <a class="btn btn-positive btn_login" id='login_btn'>登录</a>
-      <a class="btn btn-positive" href="register.html" data-ignore="push">注册</a>
+			 
+			 <div class="login_container">
+		       <form>
+		         <input type="text" name='username' placeholder="用户名" value='sang'>
+		         <input type="password" name='password' placeholder="密码" value='000000'>
+		      </form>    
+		      <a class="btn btn-positive btn_login" id='login_btn'>登录</a>
+		      <a class="btn btn-positive" href="register.html" data-ignore="push">注册</a>
+	     </div>
+			 <div class="logout_container" style='display:none;'>
+		      <a class="btn btn-positive btn_login" id='logout_btn'>退出登陆</a>
+	     </div>
+			 					
     </div><!-- /.content -->
     <nav class="bar bar-tab">
       <a class="tab-item" href="index.html"  data-ignore="push">

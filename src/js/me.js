@@ -22,13 +22,18 @@ Zepto(function($){
 			var password = current_user.password;
 			var avatar = current_user.avatar;
 			var address = current_user.address;
-			var _id = current_user._id;
+			var _id = current_user['_id'];
 			var create_at = current_user.create_at;
 		
-			$('.user_info_container').html('用户已经登陆');
-		
+			$('.user_info_container').html('欢迎您，' + username + '。您已经登陆');
+			$('.login_container').hide();
+			$('.logout_container').show();
 		}else{
 			$('.user_info_container').html('您还没有登陆哦');
+			$('.logout_container').hide();
+			setTimeout(function(){
+				$('.login_container').show();
+			},2000);
 		}
 	//     "data": {
 	//         "__v": 0,

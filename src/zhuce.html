@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>聊天页面</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./lib/css/ratchet.min.css">
+    <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="http://at35.com:4567/faye/client.js"></script>
+    <script src="./lib/js/zepto.min.js"></script>
+    <script src="./lib/js/ratchet.min.js"></script>
+    <script src="./lib/js/sifter.min.js"></script>
+    <script src="./lib/js/iChatClient.js"></script>
+    <script src="./js/chat.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon pull-right"></a>
+      <h1 class="title">注册</h1>
+    </header>
+    <div class="content">
+      <form>
+        <input type="text" placeholder="手机">
+        <input type="password" placeholder="密码" >
+     </form>    
+     <button class="btn btn-positive btn_login" href="login.html" data-ignore="push" >登录</button>
+     <button class="btn btn-positive">注册</button>  
+    </div>
+    <nav class="bar bar-tab">
+      <a class="tab-item" href="index.html" data-ignore="push">
+        <span class="icon"><img src="images/tabbar_mainframe@2x.png" style="width:24px;"/></span>
+        <span class="tab-label">微信</span>
+      </a>
+      <a class="tab-item" href="#">
+        <span class="icon"><img src="images/tabbar_contacts@2x.png" style="width:24px;"/></span>
+        <span class="tab-label">通讯录</span>
+      </a>
+      <a class="tab-item" href="#">
+        <span class="icon"><img src="images/tabbar_discover@2x.png" style="width:24px;"/></span>
+        <span class="tab-label">发现</span>
+      </a>
+      <a class="tab-item" href="login.html" data-ignore="push">
+        <span class="icon"><img src="images/tabbar_me@2x.png" style="width:24px;"/></span>
+        <span class="tab-label">我</span>
+      </a>
+    </nav>
+  </body>
+</html>

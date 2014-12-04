@@ -1,0 +1,17 @@
+.content{
+	padding:15px;
+	margin-top: 20px;
+}
+
+.content .btn{
+	width: 48%;
+	height:44px;
+	line-height: 44px;
+	padding:0;
+	
+}
+
+.btn_login{
+	margin-right: 2%;
+}
+

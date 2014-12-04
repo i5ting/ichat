@@ -1,6 +1,6 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
-
+	var myScroll;
 	var current_user = CURRENT_USER.get_current_user();	
 	var current_session = CURRENT_SESSION.get_current_session();
 	var user_sessions = USER_SESSION.get_user_sessions();
@@ -111,9 +111,25 @@ Zepto(function($){
 	function scroll_to_bottom(){
 		var h = $(window).height() - 120 - $('#chat_container_id').height();
  
-		if(h < 0){
-			 $('#chat_container_id').css({'margin-top': h +'px'});
-		}
+		// if(h < 0){
+// 			 $('#chat_container_id').css({'margin-top': h +'px'});
+// 		}
+
+// myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(10)'))
+		myScroll.refresh();
+		
+		
+		
+		var c = $('#chat_container_id li').length;
+		myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
+	}
+	
+	function init_iscroll_for_msg_container(){
+		myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
+
+		document.addEventListener('touchmove', function (e) { 
+			e.preventDefault(); 
+		}, false);
 	}
 	
 	init();
@@ -126,6 +142,8 @@ Zepto(function($){
 			scroll_to_bottom();
 			log('收到的信息是：'+message.text);
 		});
+		
+		init_iscroll_for_msg_container();
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();

@@ -1,3 +1,25 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	-ms-touch-action: none;
+}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+/*	font-size: 12px;
+	font-family: ubuntu, helvetica, arial;*/
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
 .updated-text {
   position: absolute;
   left: 0;

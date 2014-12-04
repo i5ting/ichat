@@ -7,7 +7,7 @@ Zepto(function($){
 	
 	var current_user_uid = current_user['_id'];
 	var current_session_id = current_session['sid'];
-	
+	var current_session_name = current_session['name'];
 
 		
 	function log(t){
@@ -129,6 +129,9 @@ Zepto(function($){
 	init();
 	
 	function init(){
+		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
+		$('.title').html(title);
+		
 		client.join(current_topic, function(message) {
 		  // handle message
 			// alert(message.text);

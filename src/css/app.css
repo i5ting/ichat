@@ -61,10 +61,10 @@ body {
 	background: url(../images/tabbar_meHL@2x.png) no-repeat;
 	background-size: 24px;
 }
-.icon1 > span.checked{
-	color: green;
+.tab-label.current{
+	color: #0cba09;
 }
-
+/*首页列表内容*/
 .table-view-cell .icon {
   color: #007aff;
 }
@@ -72,7 +72,7 @@ body {
 .table-view-cell a img{
 	border-radius: 5px;
 }
-
+/*首页列表内容的时间*/
 .media-body span{
   font-size: 12px;
   float: right;
@@ -81,24 +81,6 @@ body {
 
 .table-view-cell>a:not(.btn){
 	padding-right:10px;
-}
-
-/*聊天详情*/
-
-.card_avarta{
-	padding: 10px 10px 0;
-}
-
-.card_avarta p{
-	margin-left: 12px;
-}
-
-/*多人聊天详情*/
-
-.card_avarta ul li{
-	list-style: none;
-	float: left;
-	margin-right: 15px;
 }
 
 /*底部输入框*/

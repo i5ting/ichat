@@ -26,6 +26,7 @@ window.CURRENT_USER = {
 	}
 }
 
+
 // 当前用户会话列表
 // 需要带有用户状态，不能只保存一个用户，而是多个用户
 window.USER_SESSION = {

@@ -62,7 +62,7 @@ router.post('/login', function(req, res) {
 	  if (err) {
 	  	 console.error(err);
 			 return res.status(200).json({
-			 	 data: sur,
+			 	 data: {},
 				 status:{
 				 	 code : err.code,
 					 msg  : err.name + ' : ' + err.err

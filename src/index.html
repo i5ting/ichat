@@ -21,25 +21,30 @@
 		<script src="./js/localstorage.js"></script>
 		<script src="./js/index.js"></script>
 		<script src="./js/fastclick_body.js"></script>
+    <script src="./js/jquery.min.js"></script>
 		<script>
 			window.addEventListener('push', function(){
 				alert(111);
 			});
-		</script>
+      $(function(){
+         $('.bar_right_add').click(function(){
+          $(".group_chat_box").toggle();
+         })
+       })
+    </script>
   </head>
   <body>
-
     <header class="bar bar-nav">
-      <a class="icon icon-plus pull-right"></a>
+      <a class="icon icon-plus pull-right bar_right_add"></a>
       <div class="group_chat_box">
-      <ul class="table-view">
-          <li class="table-view-cell media">
-          <span class="media-object pull-left"><img src="images/tabbar_mainframe@2x.png" style="width:24px;"/></span>
-          <div class="media-body media_address_name">
-            佀桂丽
-          </div>
-      </li>
-      </ul>
+        <ul class="table-view">
+          <li class="table-view-cell">
+            <span class="media-object pull-left"><img src="images/tabbar_mainframe.png" style="width:24px;"/></span>
+            <div class="media-body">
+              <a href="group_chat.html" data-ignore="push" style="color:#fff;font-size:14px;"> 发起群聊</a>
+            </div>
+          </li>
+        </ul> 
       </div>
       <h1 class="title">首页</h1>
     </header>

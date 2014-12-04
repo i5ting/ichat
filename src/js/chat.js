@@ -109,17 +109,9 @@ Zepto(function($){
 	}
 	
 	function scroll_to_bottom(){
-		var h = $(window).height() - 120 - $('#chat_container_id').height();
- 
-		// if(h < 0){
-// 			 $('#chat_container_id').css({'margin-top': h +'px'});
-// 		}
-
-// myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(10)'))
-		myScroll.refresh();
-		
-		
-		
+		// dom变化，所以这里强制刷新一下。
+ 		myScroll.refresh();
+		// 定位到最后一个li
 		var c = $('#chat_container_id li').length;
 		myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
 	}

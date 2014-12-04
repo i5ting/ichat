@@ -12,12 +12,16 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/login.css">
     <script src="http://at35.com:4567/faye/client.js"></script>
-    <script src="./lib/js/zepto.min.js"></script>
+		<script src="./lib/js/zepto.min.js"></script>
     <script src="./lib/js/ratchet.min.js"></script>
     <script src="./lib/js/sifter.min.js"></script>
-    <script src="./lib/js/iChatClient.js"></script>
+		<script src="./lib/js/iChatClient.js"></script>
+		<script src="./lib/js/fastclick.min.js"></script>
+		<script src="./lib/js/iscroll-min.js"></script>
 		<script src="./js/config.js"></script>
-    <script src="./js/chat.js"></script>
+		<script src="./js/localstorage.js"></script>
+		<script src="./js/fastclick_body.js"></script>
+    <script src="./js/login.js"></script>
   </head>
   <body>
     <header class="bar bar-nav">
@@ -26,10 +30,10 @@
     </header>
     <div class="content">
       <form>
-        <input type="text" placeholder="用户名">
-        <input type="password" placeholder="密码" >
+        <input type="text" name='username' placeholder="用户名" value='sang'>
+        <input type="password" name='password' placeholder="密码" value='000000'>
      </form>    
-     <a class="btn btn-positive btn_login">登录</a>
+     <a class="btn btn-positive btn_login" id='login_btn'>登录</a>
      <a class="btn btn-positive" href="register.html" data-ignore="push">注册</a>  
     </div><!-- /.content -->
     <nav class="bar bar-tab">

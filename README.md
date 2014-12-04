@@ -19,6 +19,7 @@ it's an im client like webchat
 
 - http://goratchet.com/
 - http-server 
+- https://github.com/TroyGoode/node-cors
 
 ## API
 

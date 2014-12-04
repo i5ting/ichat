@@ -86,26 +86,40 @@ body {
 
 /**/
 .group_chat_box {
-background: #3faffc;
+background: #000;
 color: #fff;
+
 position: relative;
-padding: 8px;
+right:-26px;
+top:53px;
+float: right;
 display: inline-block;
 word-wrap: break-word;
 word-break: break-all;
 vertical-align: middle;
-border-radius: 5px;
-font-size: 1.2em;
+display: none;
 }
 
 .group_chat_box:before {
-border-left: 6px solid #3faffc;
-left: 100%;
+border-bottom: 6px solid #000;
 content: "";
 position: absolute;
-top: 10px;
-width: 0;
-height: 0;
-border-top: 6px solid transparent;
-border-bottom: 6px solid transparent;
+right: 10px;
+top:-5px;
+border-left: 6px solid transparent;
+border-right: 6px solid transparent;
+}
+.group_chat_box ul{
+	margin: 0;
+}
+.group_chat_box ul li{
+	background: #000;
+	border-radius: 5px;
+}
+
+/*发起群聊*/
+.bar .header_btn{
+	font-size:14px;
+	margin-top: 5px;
+	color:#000;
 }

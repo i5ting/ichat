@@ -18,20 +18,15 @@ Zepto(function($){
 	}
 	
 	function save_data_to_local_storage(data){
-		storage_current_user(data);
 		storage_user_sesssion(data);
 	}
 	
-	// 存储当前用户信息
-	function storage_current_user(data){
-		var current_user = data.data.user;
-		CURRENT_USER.set_current_user(current_user);
-	}
 	// 存储当前会话列表信息
 	function storage_user_sesssion(data){
 		var sessions = data.data.sessions;
 		USER_SESSION.set_user_sessions(sessions);
 	}
+	
 	// 存储当前会话信息
 	function storage_current_sesssion(sesssion){
 		CURRENT_SESSION.set_current_session(sesssion);
@@ -69,8 +64,8 @@ Zepto(function($){
           +"<a href='" + chat_page + "' data-ignore='push'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
-              + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.last_message + "</p>"
-              +"<p style='width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>Lorem ipsum dolor sit amet...</p>"
+              + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.name + "</p>"
+              +"<p style='font-size:12px;color:#bbb;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
             +"</div>"
           +"</a>"
 		+"</li>";
@@ -83,8 +78,8 @@ Zepto(function($){
           +"<a href='chats.html' data-ignore='push'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
-				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.last_message + "</p>"
-              +"<p style='width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>Lorem ipsum dolor sit amet...+</p>"
+				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.name + "</p>"
+              +"<p style='font-size:12px;color:#bbb;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
             +"</div>"
           +"</a>"
 		+"</li>";

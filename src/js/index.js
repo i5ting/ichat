@@ -64,8 +64,8 @@ Zepto(function($){
           +"<a href='" + chat_page + "' data-ignore='push'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
-              + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.last_message + "</p>"
-              +"<p style='width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>Lorem ipsum dolor sit amet...</p>"
+              + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.name + "</p>"
+              +"<p style='width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
             +"</div>"
           +"</a>"
 		+"</li>";
@@ -78,8 +78,8 @@ Zepto(function($){
           +"<a href='chats.html' data-ignore='push'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
-				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.last_message + "</p>"
-              +"<p style='width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>Lorem ipsum dolor sit amet...+</p>"
+				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.name + "</p>"
+              +"<p style='width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
             +"</div>"
           +"</a>"
 		+"</li>";

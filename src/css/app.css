@@ -46,6 +46,10 @@ body {
 .table-view-cell>a:not(.btn){
 	padding-right:10px;
 }
+
+#table_content{
+
+}
 /*聊天详情*/
 
 .card_avarta{
@@ -111,3 +115,4 @@ body {
 	border: none;
 	font-size: 16px;
 }
+

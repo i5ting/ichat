@@ -1,27 +1,23 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
+	var config = window.ichat_config;
+		
 	var myScroll;
 	var current_user = CURRENT_USER.get_current_user();	
 	var current_session = CURRENT_SESSION.get_current_session();
 	var user_sessions = USER_SESSION.get_user_sessions();
 	
-	var current_user_uid = current_user['uid'];
+	var current_user_uid = current_user['_id'];
 	var current_session_id = current_session['sid'];
-		
+	var current_session_name = current_session['name'];
+	
 	function log(t){
 		console.log('[LOG] '+ t);
 	}
-	var client = new iChatClient({
-		url : 'http://at35.com:4567/faye',
-		timeout : 120,
-		retry		: 5
-	});
-
-	function get_current_topic(){
-		return 'foo' + '_' + current_session_id;
-	}
 	
-	var current_topic = get_current_topic();
+	var client = config.get_client();
+	
+	var current_topic = config.get_current_topic_with_session_id(current_session_id);
 	
 	function bind_send_msg_event(){
 		$('.send_msg_btn').click(function(){
@@ -109,17 +105,9 @@ Zepto(function($){
 	}
 	
 	function scroll_to_bottom(){
-		var h = $(window).height() - 120 - $('#chat_container_id').height();
- 
-		// if(h < 0){
-// 			 $('#chat_container_id').css({'margin-top': h +'px'});
-// 		}
-
-// myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(10)'))
-		myScroll.refresh();
-		
-		
-		
+		// dom变化，所以这里强制刷新一下。
+ 		myScroll.refresh();
+		// 定位到最后一个li
 		var c = $('#chat_container_id li').length;
 		myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
 	}
@@ -135,6 +123,9 @@ Zepto(function($){
 	init();
 	
 	function init(){
+		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
+		$('.title').html(title);
+		
 		client.join(current_topic, function(message) {
 		  // handle message
 			// alert(message.text);

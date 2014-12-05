@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -11,6 +12,9 @@ var users = require('./routes/users');
 var api_users = require('./routes/api/v0.1.0/users');
 
 var app = express();
+
+// 支持跨域
+app.use(cors());
 
 // Make our db accessible to our router
 app.use(function(req,res,next){

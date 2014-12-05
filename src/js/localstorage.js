@@ -8,6 +8,10 @@ function get_object_with_key(key){
 	return JSON.parse(str);
 }
 
+function del_object_with_key(key){
+	window.localStorage.removeItem(key);
+}
+
 // 定义localstorage常量
 CONST_CURRENT_USER = 'CONST_CURRENT_USER';
 CONST_USER_SESSION = 'CONST_USER_SESSION';
@@ -21,8 +25,11 @@ window.CURRENT_USER = {
 	get_current_user: function(){
 		return get_object_with_key('CONST_CURRENT_USER');
 	},
+	remove_current_user: function(){
+		return del_object_with_key('CONST_CURRENT_USER');
+	},
 	get_current_user_uid:function(){
-		return this.get_current_user()['uid'];
+		return this.get_current_user()['_id'];
 	}
 }
 

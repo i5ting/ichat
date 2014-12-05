@@ -129,6 +129,7 @@ Zepto(function($){
 	
 	init();
 	
+	
 	function init(){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
@@ -139,7 +140,8 @@ Zepto(function($){
 			// alert(message.text);
 			write_msg_content_to_dom(message);
 			scroll_to_bottom();
-			log('收到的信息是：'+message.text);
+			
+			config.dump_message(message);
 		});
 		
 		init_iscroll_for_msg_container();

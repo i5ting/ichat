@@ -141,7 +141,7 @@ window.ichat_config = {
 			sid 	: current_session_id,
 			sname	: current_session_name
 		},{
-			timestamp : new Date().Format("yyyy-MM-dd HH:mm:ss"); 
+			timestamp : new Date().Format("yyyy-MM-dd hh:mm:ss")
 		});
 		
 		return _msg;
@@ -149,7 +149,7 @@ window.ichat_config = {
 	dump_message: function (msg){
 		var content = '';
 		for(var attr in msg){
-			content += ' attr=' + attr + ',value=' + msg[attr];
+			content += ' ' + attr + '=' + msg[attr];
 		}
 		this.log('收到的信息是：'+content);
 	}

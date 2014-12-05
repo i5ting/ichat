@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>[群组]聊天页面</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./lib/css/ratchet.min.css">
+    <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
+    <!-- <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/chat.css"> -->
+    <link rel="stylesheet" href="css/user_details.css">
+    <script src="http://at35.com:4567/faye/client.js"></script>
+    <script src="./lib/js/zepto.min.js"></script>
+    <script src="./lib/js/ratchet.min.js"></script>
+    <script src="./lib/js/sifter.min.js"></script>
+    <script src="./js/config.js"></script>
+    <script src="./lib/js/iChatClient.js"></script>
+    <script src="./js/chat.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+      <a class="icon icon-left-nav pull-left fonts" href="address_book.html" data-ignore="push" data-transition="slide-out">通讯录</a>
+      <a class="icon icon-more pull-right" href="information.html" data-ignore="push"></a>
+      <h1 class="title">详细资料</h1>
+    </header>
+    <div class="content">
+         <ul class="table-view" id='chat_session_container'>
+           <li class="table-view-cell">
+              <a href="chat.html" data-ignore="push">
+                <img class="media-object pull-left" src="http://placehold.it/42x42">
+                <div class="media-body">
+                 胡红艳<img src="images/ActionSheetBtnShakefriend@2x.png" class="img" style="width:15px;height:15px;">
+                  <p>昵称：红苹果</p>
+                </div>
+              </a>
+           </li>
+         </ul>
+         <div class="card">
+          <ul class="table-view"> 
+            <li class="table-view-cell lis"><span>></span>标签&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家人，非家人</li>
+            <li class="table-view-cell">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家人，非家人</li>
+            <li class="table-view-cell">个性签名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家人，非家人</li>
+             <li class="table-view-cell">个人相册&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/avatar/1.jpg" class="img"><img src="images/avatar/1.jpg" class="img"><img src="images/avatar/1.jpg"class="img" ></li>
+        
+           </ul>
+          </div>
+          <a class="btn btn-positive btn_login" href="chat.html" data-ignore="push">发消息</a>
+          <a class="btn btn_login chat_btn">视频聊天</a>
+    </div><!-- /.content -->
+  </body>
+</html>

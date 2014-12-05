@@ -190,6 +190,12 @@ ul,li{
 	float: left;
 	margin-right: 15px;
 }
+<<<<<<< HEAD
+.chathead.pull-left a p{
+
+	text-align: center;
+}
+=======
 
 /*底部输入框*/
 .camera_icon {
@@ -209,3 +215,4 @@ ul,li{
 .media_address_name{
 	margin-top: 8px;
 }
+>>>>>>> 76b96474e0c8335aa09eb91bcdbba7443d28f0f6

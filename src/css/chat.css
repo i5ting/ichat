@@ -191,6 +191,10 @@ ul,li{
 	margin-right: 15px;
 }
 
+.chathead.pull-left a p{
+	text-align: center;
+}
+
 /*底部输入框*/
 .camera_icon {
 	position: absolute;
@@ -205,3 +209,8 @@ ul,li{
 	background: url(../images/icon_camera1.png) no-repeat;
 	background-size: 24px 19px;
 }
+
+.media_address_name{
+	margin-top: 8px;
+}
+

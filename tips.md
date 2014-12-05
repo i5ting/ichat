@@ -16,3 +16,9 @@
 说明
 
 - #14是issue编号
+
+
+## use  pre-commit
+
+
+	npm install --save-dev pre-commit

@@ -11,13 +11,13 @@ Zepto(function($){
 	var current_user_uid = current_user['_id'];
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
+	
 
+	function Message(uid, avatar, sid, sname, timestamp, msg){
 		
-	function log(t){
-		console.log('[LOG] '+ t);
 	}
 	
-	var client = config.get_client();
+	// Message.prototype.
  
   // 根据session获得信息
 	function get_messages_from_session(session){

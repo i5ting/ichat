@@ -103,4 +103,8 @@ Zepto(function($){
 	}
 	
 	main();
+
+     $('.bar_right_add').click(function(){
+      $(".group_chat_box").toggle();
+     })
 });

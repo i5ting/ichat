@@ -45,7 +45,9 @@ window.ichat_config = {
 	exec_sql:function(sql){
 		var db = this.get_websql_db();
 		
-		db.transaction(function (tx) {
+		this.log_sql(sql);
+		
+		db.transaction(function (tx) {	
 			tx.executeSql(sql);
 		});
 	},
@@ -53,6 +55,8 @@ window.ichat_config = {
 	exec_sql_with_result:function(query, cb){ // <-- extra param
 	   var result = [];
 		 var db = this.get_websql_db();
+		 
+ 		 this.log_sql(query);
 		 
 	   db.transaction(function (tx) {
 	      tx.executeSql(query, [], function(tx, rs){
@@ -160,5 +164,129 @@ window.ichat_config = {
 			console.log('[LOG] '+ t);	
 		}
 	}
+	
+	,log_sql:function(t){
+		if(this.debug){
+			console.log('[SQL LOG] '+ t);	
+		}
+	}
 }
+
+
+
+
+Class('MessageBase',{
+	config:function(){
+		return ichat_config;
+	},
+	exec_sql:function(sql){
+		this.config().exec_sql(sql);
+	}
+});
+Class('Message', MessageBase, {
+	constructor:function(uid, avatar, sid, sname, timestamp, msg){
+		this.uid = uid;
+		this.avatar = avatar;
+		this.sid = sid;
+		this.sname= sname;
+		this.timestamp = timestamp;
+		this.msg = msg;
+		
+		this.create();
+		
+	},
+	values:function(obj){
+		Class('Dummy', obj);
+		Dummy.call(this);
+	},
+	create:function(){
+		var sql = 'CREATE TABLE IF NOT EXISTS message ('
+			+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+			+'uid string, '
+			+'avatar string,'
+			+'sid string,'
+			+'sname string,'
+			+'timestamp string,'
+			+'msg text)';
+	
+		this.exec_sql(sql);
+	},
+	save:function(){
+		var sql = "insert into message ('uid',' avatar',' sid',' sname',' timestamp',' msg') values('"
+				+ this.uid +"','" 
+				+ this.avatar + "','" 
+				+ this.sid + "',' " 
+				+ this.sname+"','"
+				+ this.timestamp +"',' "
+				+ this.msg 
+			+ "')";
+		
+		ichat_config.log_sql(sql);
+		ichat_config.exec_sql(sql);
+	},
+	to_string:function(){
+		return  'object=('
+				+ this.uid +',' 
+				+ this.avatar + ',' 
+				+ this.sid + ', ' 
+				+ this.sname+','
+				+ this.timestamp +', '
+				+ this.msg 
+			+ ')';
+	}
+});
+
+Message.get_messages_with_current_session = function(cb){
+	var config = ichat_config;
+		
+	var current_session = config.get_current_session();
+	
+
+	var current_session_id = current_session['sid'];
+	var current_session_name = current_session['name'];
+	
+	var sql = "SELECT * FROM message where sid='" + current_session_id + "' and sname='" + current_session_name 
+		+ "' order by timestamp;";
+	config.log_sql(sql)
+	config.exec_sql_with_result(sql, function(pleaseWork) {
+    console.log(pleaseWork);
+    // any further processing here
+		cb(pleaseWork);
+  });
+	
+}
+
+Class('SessionLisner',MessageBase, {
+	constructor:function(one_session){
+		this.session = one_session;
+		
+		this.config = ichat_config;
+		this.client = this.config.get_client();
+	},
+	start_observe:function(){
+		var current_session_id = this.session['sid'];
+		var current_topic = this.config.get_current_topic_with_session_id(current_session_id);
+	
+		this.client.join(current_topic, function(message) {
+		  // handle message
+			console.log('收到的信息是：'+message.text);
+		
+			//TODO: 写到websql里
+			this.save_message_to_web_sql(message);
+		});
+	},
+	save_message_to_web_sql:function(message){
+		var msg = new Message();
+		msg.uid = message.uid;
+		msg.avatar = message.avatar;
+		msg.sid = message.sid;
+		msg.sname= message.sname;
+		msg.timestamp = message.timestamp;
+		msg.msg = message.text;
+		
+		this.config().log(msg.to_string());
+		
+		msg.save();
+	}
+});
 

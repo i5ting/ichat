@@ -17,16 +17,16 @@ Zepto(function($){
 		console.log('[LOG] '+ t);
 	}
 	
-	var client = config.get_client();
+
 	
 	//TODO: 考虑和index.js里的sessions循环，能否避免，整合到一处
-	function sessions_storage(sessions){
+	function init_job_for_sessions(sessions){
 		for(var i in sessions){
 			single_session_process(sessions[i]);
 		}
 	}
 
-	function single_session_process(one_session){
+	function single_session_lisner(one_session){
 		var current_session_id = one_session['sid'];
 		var current_topic = config.get_current_topic_with_session_id(current_session_id);
 		
@@ -42,25 +42,10 @@ Zepto(function($){
 	
 	function save_message_to_web_sql(message){
 		
+		var msg = new Message();
+		msg.values(message);
 	}
-	
-	function create_message_table(){
-
-		//open database
-		var sql = 'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT,name string, avatar string,address string)';
-		
-		config.exec_sql(sql);
-		
-
-		config.exec_sql_with_result("SELECT * FROM planets;", function(pleaseWork) {
-	    console.log(pleaseWork);
-	    // any further processing here
-	  });
-		
-	}
-	
-	function
-	
+ 
 	
 });
 	

@@ -132,6 +132,7 @@ Zepto(function($){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
 		
+
 		// 加入到聊天
 		client.join(current_topic, function(message) {
 		  // handle message

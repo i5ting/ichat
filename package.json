@@ -4,13 +4,17 @@
   "description": "ichat =====",
   "main": "index.js",
   "scripts": {
-		"api": "http-server api  --cors -p 4566 -o",
-		"start": "npm run start1 && npm run start2",
-		"stop":"pgrep node|xargs kill -9",
-		"start1": "http-server src -p 4568 -o & ",
-		"start2": "http-server src -p 4569 -o & ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "api": "http-server api  --cors -p 4566 -o",
+    "start": "npm run start1 && npm run start2",
+    "stop": "pgrep node|xargs kill -9",
+    "start1": "http-server src -p 4568 -o & ",
+    "start2": "http-server src -p 4569 -o & ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"checkconflict":"ack '<<<<<<<'"
   },
+  "pre-commit": [
+     "checkconflict"
+   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/i5ting/ichat.git"
@@ -20,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/i5ting/ichat/issues"
   },
-  "homepage": "https://github.com/i5ting/ichat"
+  "homepage": "https://github.com/i5ting/ichat",
+  "devDependencies": {
+    "pre-commit": "0.0.9"
+  }
 }

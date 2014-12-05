@@ -12,9 +12,7 @@ Zepto(function($){
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
 	
-	function log(t){
-		console.log('[LOG] '+ t);
-	}
+	var log = config.log;
 	
 	var client = config.get_client();
 	

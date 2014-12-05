@@ -143,7 +143,10 @@ window.ichat_config = {
 		db.transaction(function (tx) {	
 			tx.executeSql(sql);
 		},function(){
-			alert('fail');
+			if(this.debug){
+				alert('exec_sql ' + sql + ' fail');	
+			}
+			
 			return 0;
 		},function(){
 			// alert('succ');
@@ -152,22 +155,21 @@ window.ichat_config = {
 	},
 	/** Select Row from Table **/ 
 	exec_sql_with_result:function(query, cb){ // <-- extra param
-	   var result = [];
 		 var db = this.get_websql_db();
 		 
  		 this.log_sql(query);
 		 
 	   db.transaction(function (tx) {
+				var result = [];
 	      tx.executeSql(query, [], function(tx, rs){
 	         for(var i=0; i<rs.rows.length; i++) {
-	            var row = rs.rows.item(i)
-	            result[i] = { id: row['id'],
-	                          name: row['name']
-	            }
+	            var row = rs.rows.item(i);
+							result.push(row);
 	         }
 	         console.log(result);
 	         cb(result); // <-- new bit here
 	      }, this.sql_error_handler);
+				result = [];
 	   });
 	},
 	sql_error_handler:function(){
@@ -237,8 +239,11 @@ window.ichat_config = {
 		
 		var message_id = Math.uuid();
 		$.extend(_msg, {
+			type:'0'
+		},{
 			// 整合用户信息
 			uid		: current_user_uid,
+			uname : current_user['username'],
 			avatar: current_user_avatar
 		}, {
 			// 整合会话信息
@@ -285,27 +290,36 @@ Class('MessageBase',{
 	}
 });
 Class('Message', MessageBase, {
-	constructor:function(mid, uid, avatar, sid, sname, timestamp, msg){
+	constructor:function(type,mid, uid, uname,avatar, sid, sname, timestamp, msg){
+		this.type = type;
 		this.mid = mid;
 		this.uid = uid;
+		this.uname = uname;
 		this.avatar = avatar;
 		this.sid = sid;
 		this.sname= sname;
 		this.timestamp = timestamp;
 		this.msg = msg;
 		
+		// this.drop();
 		this.create();
-		
 	},
 	values:function(obj){
 		Class('Dummy', obj);
 		Dummy.call(this);
 	},
+	drop:function(){
+		var sql = 'DROP TABLE message;';
+	
+		this.exec_sql(sql);
+	},
 	create:function(){
 		var sql = 'CREATE TABLE IF NOT EXISTS message ('
 			+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+			+'type string, '
 			+'mid string, '
 			+'uid string, '
+			+'uname string, '
 			+'avatar string,'
 			+'sid string,'
 			+'sname string,'
@@ -315,9 +329,11 @@ Class('Message', MessageBase, {
 		this.exec_sql(sql);
 	},
 	save:function(){
-		var sql = "insert into message ('mid','uid','avatar','sid','sname','timestamp','msg') values('"
+		var sql = "insert into message ('type','mid','uid','uname','avatar','sid','sname','timestamp','msg') values('"
+				+ this.type +"','" 
 				+ this.mid +"','" 
 				+ this.uid +"','" 
+			  + this.uname +"','" 
 				+ this.avatar + "','" 
 				+ this.sid + "',' " 
 				+ this.sname+"','"
@@ -327,9 +343,22 @@ Class('Message', MessageBase, {
 		
 		ichat_config.exec_sql(sql);
 	},
+	get_msg_content:function(){
+		if(this.type=='undefined'){
+			this.type = 0;
+		}
+		// 0 = 普通文本类型
+		if(this.type == 0){
+			var o = JSON.parse(this.msg);
+			return "" + o.text
+		}else{
+			return "未知类型，无法解析"
+		}
+	},
 	to_string:function(){
 		return  'object=('
 				+ this.uid +',' 
+				+ this.uname +',' 
 				+ this.avatar + ',' 
 				+ this.sid + ', ' 
 				+ this.sname+','
@@ -348,7 +377,7 @@ Message.get_messages_with_current_session = function(cb){
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
 	
-	var sql = "SELECT * FROM message where sid='" + current_session_id + "' and sname='" + current_session_name 
+	var sql = "SELECT * FROM message where sid='" + current_session_id 
 		+ "' order by timestamp;";
 	config.log_sql(sql)
 	config.exec_sql_with_result(sql, function(pleaseWork) {
@@ -387,16 +416,16 @@ Class('SessionLisner',MessageBase, {
 	},
 	save_message_to_web_sql:function(message){
 		var msg = new Message();
-		
+		msg.type = message.type;
 		msg.mid = message.mid;
 		msg.uid = message.uid;
+		msg.uname = message.uname;
 		msg.avatar = message.avatar;
 		msg.sid = message.sid;
 		msg.sname= message.sname;
 		msg.timestamp = message.timestamp;
-		msg.msg = message.text;
+		msg.msg = message.msg;
 		 
-		
 		msg.save();
 	}
 });

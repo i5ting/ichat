@@ -5,6 +5,16 @@ it's an im client like webchat
 
 ![](chat.gif)
 
+## History
+
+- v0.1.0
+	- 支持1--9.jpg作为头像
+	- 聊天
+	- 注册，登录
+	- 用户消息历史，支持用户切换，消息正常
+	- 发送消息后自动滚到底部
+	- 引入了miniobject
+
 ## run
 
 启动服务器（src目录下面）

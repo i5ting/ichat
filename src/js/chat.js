@@ -137,6 +137,9 @@ Zepto(function($){
 		$('#chat_container_id').append(received_msg_html);
 	}
 	
+	/**
+	 * 自动滚动到最后一条
+	 */
 	function scroll_to_bottom(){
 		// dom变化，所以这里强制刷新一下。
  		myScroll.refresh();
@@ -164,6 +167,7 @@ Zepto(function($){
 			for(var i in messages){
 				var msg = messages[i];
 				
+				// 只收不存，存的事儿交给Message Listners
 				write_msg_content_to_dom(msg);
 			}
 			scroll_to_bottom()
@@ -172,8 +176,11 @@ Zepto(function($){
 		// 加入到聊天
 		client.join(current_topic, function(message) {
 		  // handle message
-			// alert(message.text);
+			
+			// 只收不存，存的事儿交给Message Listners
 			write_msg_content_to_dom(message);
+			
+			// 自动滚动到最后一条
 			scroll_to_bottom();
 			
 			config.dump_message(message);

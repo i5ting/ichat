@@ -35,14 +35,10 @@ Zepto(function($){
 	function list(sessions){
 		for(var i in sessions){
 			var session = sessions[i];
-			//SessionLisner
 			
 			//for render
 			var html = get_list_item_html(session)
 			$('#chat_session_container').append(html);
-			
-			var session = new SessionLisner(session);
-			session.start_observe();
 		}
 	}
 	
@@ -81,7 +77,7 @@ Zepto(function($){
 	
 	function get_p2g_html(session){
 		var html = "<li class='table-view-cell'>"
-          +"<a href='chats.html' data-ignore='push' data-transition='fade'>"
+          +"<a href='chat.html' data-ignore='push' data-transition='fade'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
 				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.name + "</p>"

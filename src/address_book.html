@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./lib/css/ratchet.min.css">
     <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/address_book.css">
     <script src="http://at35.com:4567/faye/client.js"></script>
     <script src="./lib/js/zepto.min.js"></script>
     <script src="./lib/js/ratchet.min.js"></script>
@@ -21,7 +22,11 @@
     <header class="bar bar-nav">
       <h1 class="title">通讯录</h1>
     </header>
-    <ul class="table-view" style="margin-top:45px;">
+    <div class="content">
+    <form>
+        <input type="search" placeholder="搜索">
+    </form>
+    <ul class="table-view">
       <li class="table-view-cell media">
           <a href="user_details.html" data-ignore="push" data-transition="slide-out">
           <span class="media-object pull-left"><img class="media-object pull-left" src="http://placehold.it/36x36"></span>
@@ -71,6 +76,7 @@
           </a>
       </li>
     </ul>
+     </div>
     <nav class="bar bar-tab">
       <a class="tab-item" href="index.html" data-ignore="push">
         <span class="icon icon1"></span>

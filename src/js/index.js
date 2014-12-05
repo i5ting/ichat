@@ -35,8 +35,14 @@ Zepto(function($){
 	function list(sessions){
 		for(var i in sessions){
 			var session = sessions[i];
+			//SessionLisner
+			
+			//for render
 			var html = get_list_item_html(session)
 			$('#chat_session_container').append(html);
+			
+			var session = new SessionLisner(session);
+			session.start_observe();
 		}
 	}
 	
@@ -103,4 +109,8 @@ Zepto(function($){
 	}
 	
 	main();
+
+     $('.bar_right_add').click(function(){
+      $(".group_chat_box").toggle();
+     })
 });

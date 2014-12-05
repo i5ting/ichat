@@ -13,10 +13,6 @@ Zepto(function($){
 	var current_session_name = current_session['name'];
 	
 
-	function Message(uid, avatar, sid, sname, timestamp, msg){
-		
-	}
-	
 	// Message.prototype.
  
   // 根据session获得信息

@@ -192,3 +192,7 @@ ul,li{
 	float: left;
 	margin-right: 15px;
 }
+.chathead.pull-left a p{
+
+	text-align: center;
+}

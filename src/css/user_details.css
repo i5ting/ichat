@@ -1,0 +1,40 @@
+.icon.icon-left-nav.pull-left.fonts{
+
+    color: black;
+	font-size: 20px;
+}
+/* .media_body.img{
+
+	height: 15px;
+    width: 15px;
+} */
+.card {
+
+	margin: 10px;
+	overflow: hidden;
+	background-color: #fff;
+	
+}
+.table-view-cell.lis span{
+
+    float: right;
+
+}
+.img{
+
+	width: 4%;
+	margin-right: 10px;
+}
+.btn_login{
+
+    border-radius: 7px;
+	line-height: 26px;
+	height: 37px;
+	text-align: center;
+	margin: 11px 344px;
+	width: 50%;
+}
+.chat_btn{
+
+	border:1px solid #cccccc;
+}

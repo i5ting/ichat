@@ -14,6 +14,7 @@ it's an im client like webchat
 	- 用户消息历史，支持用户切换，消息正常
 	- 发送消息后自动滚到底部
 	- 引入了miniobject
+	- add pre-commint for check conflict
 
 ## run
 

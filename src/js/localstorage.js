@@ -30,7 +30,7 @@ window.CURRENT_USER = {
 	},
 	get_current_user_uid:function(){
 		if(get_object_with_key('CONST_CURRENT_USER') == null){
-			alert('user is null');
+			// alert('user is null');
 			return;
 		}
 		return get_object_with_key('CONST_CURRENT_USER')['_id'];

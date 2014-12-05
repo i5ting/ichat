@@ -216,6 +216,16 @@ window.ichat_config = {
 	get_user_sessions: function(){
 		return USER_SESSION.get_user_sessions();
 	},
+	is_login:function(){
+		var current_user = this.get_current_user();	
+		var cuid  = current_user['_id'];
+		if(current_user == null || cuid == null || cuid == undefined){
+			console.log('当前用户未登录，所以不记录历史');
+			return false;
+		}else{
+			return true;
+		}
+	},
 	
 	// messsage
 	/**
@@ -313,6 +323,7 @@ Class('Message', MessageBase, {
 	
 		this.exec_sql(sql);
 	},
+	//cuid是当前用户id
 	create:function(){
 		var sql = 'CREATE TABLE IF NOT EXISTS message ('
 			+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
@@ -323,13 +334,21 @@ Class('Message', MessageBase, {
 			+'avatar string,'
 			+'sid string,'
 			+'sname string,'
+		  +'cuid string, ' 
 			+'timestamp string,'
 			+'msg text)';
 	
 		this.exec_sql(sql);
 	},
 	save:function(){
-		var sql = "insert into message ('type','mid','uid','uname','avatar','sid','sname','timestamp','msg') values('"
+		var current_user = this.config().get_current_user();	
+		var cuid  = current_user['_id'];
+		if(this.config().is_login() == false){
+			console.log('当前用户未登录，所以不记录历史');
+			return;
+		}
+
+		var sql = "insert into message ('type','mid','uid','uname','avatar','sid','sname','timestamp','cuid','msg') values('"
 				+ this.type +"','" 
 				+ this.mid +"','" 
 				+ this.uid +"','" 
@@ -338,6 +357,7 @@ Class('Message', MessageBase, {
 				+ this.sid + "',' " 
 				+ this.sname+"','"
 				+ this.timestamp +"',' "
+				+ cuid +"',' "
 				+ this.msg 
 			+ "')";
 		
@@ -372,13 +392,18 @@ Message.get_messages_with_current_session = function(cb){
 	var config = ichat_config;
 		
 	var current_session = config.get_current_session();
-	
-
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
 	
+	var current_user = config.get_current_user();	
+	var cuid  = current_user['_id'];
+	if(config.is_login() == false){
+		console.log('当前用户未登录，所以不记录历史');
+		return;
+	}
+	
 	var sql = "SELECT * FROM message where sid='" + current_session_id 
-		+ "' order by timestamp;";
+		+ "' and trim(cuid)='" + cuid + "' order by timestamp;";
 	config.log_sql(sql)
 	config.exec_sql_with_result(sql, function(pleaseWork) {
     console.log(pleaseWork);

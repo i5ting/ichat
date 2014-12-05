@@ -100,10 +100,12 @@ Zepto(function($){
 	function write_left_msg_content_to_dom(msg){
 		var msg_content = get_message_content(msg);
 		
+		var avatar = '../images/avatar/'+ msg.avatar +'';
+		//../images/defaultimg.jpg
 		var received_msg_html = "<li class='msgitem leftitem clearfix'>"
 			+"	<div class='chathead pull-left'>"
 			+"		<a target='_blank' href='#'>"
-			+"			<img src='../images/defaultimg.jpg' alt=''><p>"+ msg.uname +"</p>"
+			+"			<img src='" + avatar + "' alt=''><p>"+ msg.uname +"</p>"
 			+"		</a>"
 			+"	</div>"
 			+"	<div class='msg-content-header pull-left'></div>"

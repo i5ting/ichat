@@ -3,11 +3,12 @@ Zepto(function($){
 	var config = window.ichat_config;
 		
 	var myScroll;
-	var current_user = CURRENT_USER.get_current_user();	
-	var current_session = CURRENT_SESSION.get_current_session();
-	var user_sessions = USER_SESSION.get_user_sessions();
+	var current_user = config.get_current_user();	
+	var current_session = config.get_current_session();
+	var user_sessions = config.get_user_sessions();
 	
 	var current_user_uid = current_user['_id'];
+	var current_user_avatar = current_user['avatar'];
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
 	
@@ -19,16 +20,22 @@ Zepto(function($){
 	
 	var current_topic = config.get_current_topic_with_session_id(current_session_id);
 	
+ 
+	/**
+	 * 发送消息
+	 */
 	function bind_send_msg_event(){
 		$('.send_msg_btn').click(function(){
 			var input_text = $.trim($('#msg_input_text_id').val());
 			log('发送信息内容是：'+input_text);
 		
+			// $.extend(target, [source, [source2, ...]])  ⇒ target
+			var msg = config.get_msg({
+				text: input_text
+			});
+			
 			// alert('send_msg_btn');
-			client.send(current_topic,{
-				text: input_text,
-				uid : current_user_uid
-			},function(){
+			client.send(current_topic, msg, function(){
 				// alert('Message received by server!');
 			},function(error){
 				alert('There was a problem: ' + error.message);
@@ -126,6 +133,7 @@ Zepto(function($){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
 		
+		// 加入到聊天
 		client.join(current_topic, function(message) {
 		  // handle message
 			// alert(message.text);

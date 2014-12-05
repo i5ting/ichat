@@ -44,5 +44,23 @@ Zepto(function($){
 		
 	}
 	
+	function create_message_table(){
+
+		//open database
+		var sql = 'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT,name string, avatar string,address string)';
+		
+		config.exec_sql(sql);
+		
+
+		config.exec_sql_with_result("SELECT * FROM planets;", function(pleaseWork) {
+	    console.log(pleaseWork);
+	    // any further processing here
+	  });
+		
+	}
+	
+	function
+	
+	
 });
 	

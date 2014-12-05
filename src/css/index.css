@@ -42,9 +42,11 @@
 	border-left: 6px solid transparent;
 	border-right: 6px solid transparent;
 }
+
 .group_chat_box ul{
 	margin: 0;
 }
+
 .group_chat_box ul li{
 	background: #000;
 	border-radius: 5px;

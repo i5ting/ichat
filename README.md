@@ -14,6 +14,11 @@ it's an im client like webchat
 启动静态接口服务（api目录下面）
 
 	npm run api
+	
+## 文档
+
+- 接口说明[api  ](api.md)
+- 技巧积累[tips ](tips.md)
 
 ## 技术栈
 

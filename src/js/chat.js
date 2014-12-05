@@ -1,5 +1,7 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
+	var config = window.ichat_config;
+		
 	var myScroll;
 	var current_user = CURRENT_USER.get_current_user();	
 	var current_session = CURRENT_SESSION.get_current_session();
@@ -8,22 +10,14 @@ Zepto(function($){
 	var current_user_uid = current_user['_id'];
 	var current_session_id = current_session['sid'];
 	var current_session_name = current_session['name'];
-
-		
+	
 	function log(t){
 		console.log('[LOG] '+ t);
 	}
-	var client = new iChatClient({
-		url : 'http://at35.com:4567/faye',
-		timeout : 120,
-		retry		: 5
-	});
-
-	function get_current_topic(){
-		return 'foo' + '_' + current_session_id;
-	}
 	
-	var current_topic = get_current_topic();
+	var client = config.get_client();
+	
+	var current_topic = config.get_current_topic_with_session_id(current_session_id);
 	
 	function bind_send_msg_event(){
 		$('.send_msg_btn').click(function(){

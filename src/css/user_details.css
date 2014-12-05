@@ -25,16 +25,14 @@
 	width: 4%;
 	margin-right: 10px;
 }
-.btn_login{
 
-    border-radius: 7px;
-	line-height: 26px;
-	height: 37px;
-	text-align: center;
-	margin: 11px 344px;
-	width: 50%;
+.content .btn{
+	width: 48%;
+	height:44px;
+	line-height: 44px;
+	padding:0;
 }
-.chat_btn{
 
-	border:1px solid #cccccc;
+.btn_login{
+	margin:0 2% 0 1%;
 }

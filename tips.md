@@ -2,7 +2,7 @@
 
 ## 如何快速查找是否有冲突
 
-	ack '<<<<<<<'
+![Tip Check Conflict](docs/tips/tip_check_conflict.png)
 	
 ## 如何正确关闭issue
 

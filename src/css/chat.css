@@ -176,7 +176,6 @@ ul,li{
 }
 
 /*聊天详情*/
-
 .card_avarta{
 	padding: 10px 10px 0;
 }
@@ -186,9 +185,27 @@ ul,li{
 }
 
 /*多人聊天详情*/
-
 .card_avarta ul li{
 	list-style: none;
 	float: left;
 	margin-right: 15px;
+}
+
+/*底部输入框*/
+.camera_icon {
+	position: absolute;
+	top: 12px;
+	left: 13px;
+}
+
+.camera_icon a {
+	display: block;
+	width: 24px;
+	height: 19px;
+	background: url(../images/icon_camera1.png) no-repeat;
+	background-size: 24px 19px;
+}
+
+.media_address_name{
+	margin-top: 8px;
 }

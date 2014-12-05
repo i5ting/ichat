@@ -29,7 +29,11 @@ window.CURRENT_USER = {
 		return del_object_with_key('CONST_CURRENT_USER');
 	},
 	get_current_user_uid:function(){
-		return this.get_current_user()['_id'];
+		if(get_object_with_key('CONST_CURRENT_USER') == null){
+			alert('user is null');
+			return;
+		}
+		return get_object_with_key('CONST_CURRENT_USER')['_id'];
 	}
 }
 

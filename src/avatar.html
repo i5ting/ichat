@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>更改本地头像</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./lib/css/ratchet.min.css">
+    <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
+     <link rel="stylesheet" href="css/app.css">
+     <link rel="stylesheet" href="css/login.css">
+    <script src="http://at35.com:4567/faye/client.js"></script>
+    <script src="./lib/js/zepto.min.js"></script>
+    <script src="./lib/js/ratchet.min.js"></script>
+		<script src="./lib/js/miniobj.min.js"></script>
+    <script src="./lib/js/sifter.min.js"></script>
+    <script src="./lib/js/iChatClient.js"></script>
+		<script src="./js/localstorage.js"></script>
+		<script src="./js/config.js"></script>
+    <script src="./js/avatar.js"></script>
+  </head>
+  <body>
+    <header class="bar bar-nav">
+			<a class="icon icon-left-nav pull-left" href="index.html" data-ignore="push"></a>
+      <a class="icon pull-right"></a>
+      <h1 class="title">更改本地头像</h1>
+    </header>
+    <div class="content">
+      <form>
+         <select name='avatar'>
+					 <option vallue='1'>1.jpg</option>
+					 <option vallue='2'>2.jpg</option>
+					 <option vallue='3'>3.jpg</option>
+					 <option vallue='4'>4.jpg</option>
+					 <option vallue='5'>5.jpg</option>
+					 <option vallue='6'>6.jpg</option>
+					 <option vallue='7'>7.jpg</option>
+					 <option vallue='8'>8.jpg</option>
+					 <option vallue='9'>9.jpg</option>
+				 </select>
+      </form>    
+      <!-- <a class="btn btn-positive btn_login" href="login.html" data-ignore="push">登录</a> -->
+		 	<center>
+     		<a class="btn btn-positive" id='change_avatar_btn'>确定</a>  
+	 		</center>
+    </div>
+    <nav class="bar bar-tab">
+      <a class="tab-item" href="index.html" data-ignore="push">
+        <span class="icon icon1"></span>
+        <span class="tab-label">微信</span>
+      </a>
+      <a class="tab-item" href="address_book.html">
+        <span class="icon icon2"></span>
+        <span class="tab-label">通讯录</span>
+      </a>
+      <a class="tab-item" href="discover.html" data-ignore="push">
+        <span class="icon icon3"></span>
+        <span class="tab-label">发现</span>
+      </a>
+      <a class="tab-item" href="me.html" data-ignore="push">
+        <span class="icon icon4 checked"></span>
+        <span class="tab-label current">我</span>
+      </a>
+    </nav>
+  </body>
+</html>

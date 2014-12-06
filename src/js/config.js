@@ -207,6 +207,10 @@ window.ichat_config = {
 	}
 	//user
 	,
+	set_current_user: function(user){
+		return CURRENT_USER.set_current_user(user);	
+	}	
+	,
 	get_current_user: function(){
 		return CURRENT_USER.get_current_user();	
 	}	,
@@ -225,6 +229,11 @@ window.ichat_config = {
 		}else{
 			return true;
 		}
+	},
+	change_avatar:function(pic){
+		var user = this.get_current_user();
+		user.avatar = pic;
+		this.set_current_user(user);
 	},
 	
 	// messsage

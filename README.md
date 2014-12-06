@@ -17,6 +17,11 @@ it's an im client like webchat
 	- add pre-commint for check conflict
 	- 删除用户(接口已有，没有界面)
 	- 本地修改头像
+	- 修改头像同步到服务器（todo）
+	- 服务器缓存消息历史（todo v0.2.0）
+	- 通讯录功能（todo）
+	- 创建会话保存到服务器（todo）
+	- 监听会话change（todo）
 
 ## run
 

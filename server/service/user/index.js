@@ -1,0 +1,2 @@
+
+exports.del = require('./del');;

@@ -24,5 +24,10 @@ UserSchema.methods.is_exist = function(cb){
 	return this.model('UserModel').findOne({ username:this.username,password:this.password }, cb);
 }
 
+// define a static for example
+UserSchema.statics.delete_by_name = function (name, cb_succ,cb_fail) {
+
+};
+
 
 module.exports = mongoose.model('UserModel', UserSchema);

@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 require('chai').should();
-var User = require('../db/user_model');
+var model = require('../db/index');
 // mongoose config
 var mongoose = require('mongoose')  
   , connectionString = 'mongodb://localhost:27017/exam_weixin_teset'
@@ -63,12 +63,7 @@ describe('UserModel', function(){
   describe('#save()', function(){
     it('should return sang_test2 when user save', function(done){
 
-  			// create a user a new user
-  			var testUser = new User({
-  			    username: 'sang_test2',
-  			    password: 'Password123'
-  			});
-
+				var User = model.UserModel;
   			// // save user to database
   			testUser.save(function(err,user) {
   			    if (err) throw err;
@@ -79,39 +74,6 @@ describe('UserModel', function(){
     })
   })
 
-
-  describe('#getAuthenticated()', function(){
-    it('should return 60 when auto save Password123 encrypted string length', function(done){
-	    // attempt to authenticate user
-	    User.getAuthenticated('sang_test1', 'Password123', function(err, user, reason) {
-        if (err) throw err;
-
-        // login was successful if we have a user
-        if (user) {
-            // handle login success
-            console.log('login success ' + user.password);
-						assert.lengthOf(user.password,60)
-						done();//success
-            return;
-        }
-
-        // otherwise we can determine why we failed
-        var reasons = User.failedLogin;
-        switch (reason) {
-            case reasons.NOT_FOUND:
-            case reasons.PASSWORD_INCORRECT:
-                // note: these cases are usually treated the same - don't tell
-                // the user *why* the login failed, only that it did
-                break;
-            case reasons.MAX_ATTEMPTS:
-                // send email or otherwise notify user that account is
-                // temporarily locked
-                break;
-        }
-				
-				done();
-	    });	
-			 
-    })
+ 
   })
 })

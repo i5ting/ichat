@@ -15,6 +15,8 @@ it's an im client like webchat
 	- 发送消息后自动滚到底部
 	- 引入了miniobject
 	- add pre-commint for check conflict
+	- 删除用户(todo)
+	- 本地修改头像(todo)
 
 ## run
 

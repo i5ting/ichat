@@ -235,7 +235,10 @@ window.ichat_config = {
 		user.avatar = pic;
 		this.set_current_user(user);
 	},
-	
+	clear_history:function(){
+		var sql = 'drop table message;';
+		this.exec_sql(sql);
+	},
 	// messsage
 	/**
 	 * 1. 消息体本身（支持各种类型）

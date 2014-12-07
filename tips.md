@@ -1,5 +1,11 @@
 # tips
 
+## 统一技术词汇
+
+- contact 联系人，通讯录
+- register 注册
+- avatar 头像
+
 ## 如何快速查找是否有冲突
 
 ![Tip Check Conflict](docs/tips/tip_check_conflict.png)
@@ -41,10 +47,10 @@
  
 对数据库操作：
 
-	db.transaction(function(transaction){
+	`db.transaction(function(transaction){
 		//当无表存在于数据库中时，调用handleError创建表，
 	  操作语句；
-	},handleError,success);
+	},handleError,success);`
  
 当操作成功时，执行success函数，若失败，则执行handleError,
 

@@ -184,7 +184,7 @@ window.ichat_config = {
 	get_chat_server_url : function(){
 		return 'http://' + this.chat_server_url + '/faye'
 	},
-	api_server_url:'127.0.0.1:5555',
+	api_server_url:'at35.com:5555',
 	//api_server_url:'127.0.0.1:5555',
 	get_api_server_url : function(){
 		return 'http://' + this.api_server_url + '/api/' + this.version;

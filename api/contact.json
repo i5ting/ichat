@@ -1,0 +1,76 @@
+{
+  "data": {
+		"me":{
+      "uid": "12",
+      "name": "阿虎",
+      "avatar": "1.jpg",
+      "address": "beijing"
+		},
+  	"contacts": [
+      {
+        "group_id": "100000001",
+        "group_name": "常委会",
+        "users": [
+          {
+            "uid": "2",
+            "name": "阿虎",
+            "avatar": "1.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "3",
+            "name": "marco",
+            "avatar": "2.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "4",
+            "name": "李文虎",
+            "avatar": "3.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "5",
+            "name": "张卓",
+            "avatar": "4.jpg",
+            "address": "beijing"
+          }
+        ]
+      },
+      {
+        "group_id": "100000002",
+        "group_name": "开发",
+        "users": [
+          {
+            "uid": "12",
+            "name": "世龙",
+            "avatar": "1.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "13",
+            "name": "桂丽",
+            "avatar": "2.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "14",
+            "name": "高宁",
+            "avatar": "3.jpg",
+            "address": "beijing"
+          },
+          {
+            "uid": "15",
+            "name": "柯织",
+            "avatar": "4.jpg",
+            "address": "beijing"
+          }
+        ]
+      }
+    ]
+  },
+  "status": {
+    "code": 0,
+    "msg": "success"
+  }
+}

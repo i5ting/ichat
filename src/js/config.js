@@ -115,18 +115,21 @@ Date.prototype.Format = function (fmt) { //author: meizz
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
-
+ 
 
 window.ichat_config = {
 	version: 'v0.1.0',
 	debug:true,
 	chat_server_url:'127.0.0.1:4567',
+	staic_api_server_url:'127.0.0.1:4566',
 	// chat_server_url:'127.0.0.1:4567',
 	chat_server_options:{
-		url : 'http://at35.com:4567/faye',
+		// url : 'http://at35.com:4567/faye',
+		url : 'http://127.0.0.1:4567/faye',
 		timeout : 120,
 		retry		: 5
 	},
+	contact_cell_height:80,
 	get_websql_db:function(){
 		if(!window.openDatabase) {
 			alert("Databases are not supported in this browser");
@@ -181,7 +184,7 @@ window.ichat_config = {
 	get_chat_server_url : function(){
 		return 'http://' + this.chat_server_url + '/faye'
 	},
-	api_server_url:'at35.com:5555',
+	api_server_url:'127.0.0.1:5555',
 	//api_server_url:'127.0.0.1:5555',
 	get_api_server_url : function(){
 		return 'http://' + this.api_server_url + '/api/' + this.version;
@@ -224,6 +227,7 @@ window.ichat_config = {
 		var current_user = this.get_current_user();	
 		var cuid  = current_user['_id'];
 		if(current_user == null || cuid == null || cuid == undefined){
+			alert('当前用户未登录，所以不记录历史');
 			console.log('当前用户未登录，所以不记录历史');
 			return false;
 		}else{
@@ -311,6 +315,7 @@ Class('MessageBase',{
 		this.config().exec_sql(sql);
 	}
 });
+
 Class('Message', MessageBase, {
 	constructor:function(type,mid, uid, uname,avatar, sid, sname, timestamp, msg){
 		this.type = type;
@@ -464,6 +469,160 @@ Class('SessionLisner',MessageBase, {
 		msg.msg = message.msg;
 		 
 		msg.save();
+	}
+});
+
+/**
+	function get_contacts_info(){
+		var api = new StaticApi();
+		var url = api.get_contact_url();
+		
+		$.get(url,function(data){
+			log(data);
+			// 会话
+			sessions  = data.data.contacts;
+			list(sessions); 
+			
+			var contact_storage = new ContactStorage();
+			contact_storage.save_to_db(sessions);
+			
+		});
+	}
+*/
+Class('CurrentUserContactStorage',MessageBase, {
+	constructor:function(){
+		this.current_user = ichat_config.get_current_user();	
+		this.cuid = this.current_user['_id'];
+		this.contacts_array = [];
+	},
+	save_to_db:function(json){
+		this.json = json;
+		this.create_table();
+		
+		// 清理当前用户的联系人，以后可能要改的。
+		this.clear_data_for_current_user();
+		
+		var contacts = this.json;
+		for(var i in contacts){
+			var contact_group = contacts[i];
+			
+			// save
+			this.save_contact_group(contact_group);
+		}
+	},
+	create_table:function(){
+		ContactStorageItem.create_table();
+	},
+	clear_data_for_current_user:function(){
+		var sql = "delete from contact where trim(cuid)='"
+				+ this.cuid
+			+ "'";
+		
+		ichat_config.exec_sql(sql);
+	},
+	save_to_contacts_array:function(obj){
+		this.contacts_array.push(obj);
+	},
+	get_contacts_array:function(obj){
+		//  var sql = "SELECT * FROM contact where sid='" + current_session_id
+		// 		+ "' and trim(cuid)='" + cuid + "' order by timestamp;";
+		// 	config.log_sql(sql)
+		// 	config.exec_sql_with_result(sql, function(pleaseWork) {
+		//     console.log(pleaseWork);
+		//     // any further processing here
+		// 		cb(pleaseWork);
+		//   });
+		//
+		// 	this.contacts_array.push(obj);
+		return this.contacts_array;
+	},
+	save_contact_group:function(contact_group){
+		if(ichat_config.is_login() == false){
+			alert('当前用户未登录，所以不记录历史');
+			return;
+		}
+		
+		var group_id		= contact_group['group_id'];
+		var	group_name	= contact_group['group_name'];
+		
+		for(var i in contact_group['users']){
+			var user = contact_group['users'][i];
+
+			var obj = {
+				'group_id'   : group_id,
+				'group_name' : group_name,
+				'cuid'			 : this.cuid
+			}
+			
+			$.extend(obj,user);
+			console.log(obj);
+			
+			// 对象缓存
+			this.save_to_contacts_array(obj);
+			
+			// 存储
+			var contact = new ContactStorageItem(obj);
+			contact.save();
+		}
+	}
+});
+
+Class('ContactStorageItem',MessageBase, {
+	constructor:function(obj){
+		this.group_id = obj.group_id;
+		this.group_name = obj.group_name;
+		this.uid = obj.uid;
+		this.name = obj.avatar;
+		this.avatar = obj.avatar;
+		this.address = obj.address;
+		this.cuid = obj.cuid;
+	},
+	save:function(){	
+		var sql = "insert into contact ('group_id','group_name','uid','name','avatar','address','cuid') values('"
+				+ this.group_id +"','" 
+				+ this.group_name+"','" 
+				+ this.uid +"','" 
+				+ this.name +"','" 
+				+ this.avatar +"','" 
+				+ this.address +"','" 
+				+ this.cuid
+			+ "')";
+		
+		ichat_config.exec_sql(sql);
+	}
+});
+
+ContactStorageItem.create_table = function(){
+	var sql = 'CREATE TABLE IF NOT EXISTS contact ('
+		+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+		+'cuid string, '
+		+'group_id string, '
+		+'group_name string, '
+		+'uid string, '
+		+'name string, '
+		+'avatar string,'
+		+'address string)';
+
+	ichat_config.exec_sql(sql);
+}
+
+
+
+Class('StaticApi',{
+	session : 'session.json',
+	contact : 'contact.json'
+}, {
+	constructor:function(){
+		this.base_url = ichat_config.staic_api_server_url;
+	},
+	get_url:function(url){
+		return 'http://' + this.base_url + "/" + url
+	},
+	get_session_url:function(){
+		return this.get_url(this.session);
+	},
+	get_contact_url:function(){
+		return this.get_url(this.contact);
 	}
 });
 

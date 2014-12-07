@@ -1,80 +1,55 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
-		
+	// Global
+	var contact_storage = new CurrentUserContactStorage();
+	
 	function log(t){
 		console.log('[LOG] '+ t);
 	}
 	
 	function get_contacts_info(){
-		$.get('http://at35.com:4566/contact.json',function(data){
+		var api = new StaticApi();
+		var url = api.get_contact_url();
+		
+		$.get(url,function(data){
 			log(data);
 			// 会话
 			sessions  = data.data.contacts;
-			list(sessions); 
+
+			// 存储到数据库中
+			contact_storage.save_to_db(sessions);
+			
+			// dom write
+			write_dom_with_current_user_contacts();
 		});
 	}
 	
- 
-	function list(contacts){
+	function write_dom_with_current_user_contacts(){
+		var contacts = contact_storage.get_contacts_array();
 		for(var i in contacts){
-			var contact_group = contacts[i];
-			
-			log(contact_group);
-			
+			var contact = contacts[i];
 			
 			//for render
-			//var html = get_list_item_html(session)
-			//$('#chat_session_container').append(html);
+			var html = get_contacts_html(contact)
+			$('#contact_container').append(html);
 		}
 	}
-	
-	function get_list_item_html(session){
-		var result = '';
-		// 单人
-		if(session.type == 'p2p'){
-			log('当前session属于【单人】聊天');
-			result = get_p2p_html(session);
-		}else if(session.type == 'p2g'){
-			// 群组
-			log('当前session属于【群组】聊天');
-			result = get_p2g_html(session);
-		}else {
-			//其他
-			log('当前session属于其他聊天');
-		}
-		
-		return result;
-	}
-	
-	function get_p2p_html(session){
-		var chat_page = 'chat.html';
-		var html = "<li class='table-view-cell'>"
-          +"<a href='" + chat_page + "' data-ignore='push' data-transition='fade'>"
-            +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
-            +"<div class='media-body'>"
-              + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.name + "</p>"
-              +"<p style='font-size:12px;color:#bbb;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
-            +"</div>"
-          +"</a>"
-		+"</li>";
+
+	function get_contacts_html(contact){
+		var html = "<li class='table-view-cell media'>"
+							    +"<a href='user_details.html' data-ignore='push' data-transition='slide-out'>"
+							    +"<span class='media-object pull-left'>"
+										+"<img class='media-object pull-left' style='width: "+ ichat_config.contact_cell_height +"px;' src='images/avatar/"+ contact.avatar +"'>"
+									+"</span>"
+							    +"<div class='media-body media_address_name'>"
+							      + contact.name
+							    +"</div>"
+							    +"</a>"
+							 +"</li>";
 		
 		return html;
 	}
-	
-	function get_p2g_html(session){
-		var html = "<li class='table-view-cell'>"
-          +"<a href='chat.html' data-ignore='push' data-transition='fade'>"
-            +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
-            +"<div class='media-body'>"
-				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.name + "</p>"
-              +"<p style='font-size:12px;color:#bbb;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.last_message + "</p>"
-            +"</div>"
-          +"</a>"
-		+"</li>";
-		
-		return html;
-	}
-	
+ 
 	$('a').live('click',function(){
 		var c = $(this).parent();
 		var i  = $('#chat_session_container').children('li').index(c)

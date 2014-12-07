@@ -5,40 +5,26 @@ Zepto(function($){
 		console.log('[LOG] '+ t);
 	}
 	
-	function get_sessions_info(){
-		$.get('http://at35.com:4566/session.json',function(data){
+	function get_contacts_info(){
+		$.get('http://at35.com:4566/contact.json',function(data){
 			log(data);
-			save_data_to_local_storage(data);	
-			
 			// 会话
-			sessions  = data.data.sessions;
-			list(sessions);
-			window.sessions = sessions
+			sessions  = data.data.contacts;
+			list(sessions); 
 		});
 	}
 	
-	function save_data_to_local_storage(data){
-		storage_user_sesssion(data);
-	}
-	
-	// 存储当前会话列表信息
-	function storage_user_sesssion(data){
-		var sessions = data.data.sessions;
-		USER_SESSION.set_user_sessions(sessions);
-	}
-	
-	// 存储当前会话信息
-	function storage_current_sesssion(sesssion){
-		CURRENT_SESSION.set_current_session(sesssion);
-	}
-	
-	function list(sessions){
-		for(var i in sessions){
-			var session = sessions[i];
+ 
+	function list(contacts){
+		for(var i in contacts){
+			var contact_group = contacts[i];
+			
+			log(contact_group);
+			
 			
 			//for render
-			var html = get_list_item_html(session)
-			$('#chat_session_container').append(html);
+			//var html = get_list_item_html(session)
+			//$('#chat_session_container').append(html);
 		}
 	}
 	
@@ -100,8 +86,8 @@ Zepto(function($){
 	});
 	
 	function main(){
-		// 获取session列表
-		get_sessions_info();
+		// 获取联系人列表
+		get_contacts_info();
 	}
 	
 	main();

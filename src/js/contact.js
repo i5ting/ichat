@@ -21,11 +21,30 @@ Zepto(function($){
 			
 			// dom write
 			write_dom_with_current_user_contacts();
+			
+			test_search_5();
 		});
 	}
 	
 	function write_dom_with_current_user_contacts(){
 		var contacts = contact_storage.get_contacts_array();
+		for(var i in contacts){
+			var contact = contacts[i];
+			
+			//for render
+			var html = get_contacts_html(contact)
+			$('#contact_container').append(html);
+		}
+	}
+	
+	function test_search_5(){
+		var arr = contact_storage.search_5("李");
+		console.log(arr);
+	}
+	
+	function write_dom_with_search_contacts(val){
+		var contacts = contact_storage.search_5(val);
+		$('#contact_container').html('');
 		for(var i in contacts){
 			var contact = contacts[i];
 			
@@ -67,6 +86,15 @@ Zepto(function($){
 	
 	main();
 
+	$("#contact_search_id").change(function() {
+		var val = $("#contact_search_id").val();
+		if($.trim(val) == ''){
+			write_dom_with_current_user_contacts();
+		}else{
+			write_dom_with_search_contacts(val);
+		}
+	});
+	
 	$('.bar_right_add').click(function(){
 		$(".group_chat_box").toggle();
 	})

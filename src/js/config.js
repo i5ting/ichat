@@ -564,6 +564,41 @@ Class('CurrentUserContactStorage',MessageBase, {
 			var contact = new ContactStorageItem(obj);
 			contact.save();
 		}
+	},
+	search:function(search_content, limit){
+ 	  // 缓存，不能每次搜索都创建这么大得对象。
+		this.sifter = new Sifter(this.contacts_array);
+		
+		ichat_config.log('contact search_content = ' + search_content);
+
+		//
+		// see @ContactStorageItem
+		//
+		// - 'group_id'
+		// - 'group_name'
+		// - 'uid'
+		// - 'name'
+		// - 'avatar'
+		// - 'address'
+		// - 'cuid'
+		//
+		var result = this.sifter.search('' + search_content, {
+		  fields: ['group_id','group_name','uid','name','avatar','address','cuid'],
+		  sort: [{field: 'name', direction: 'asc'}],
+			limit: limit
+		});
+	
+		return result;
+	},
+	search_5:function(search_content){
+		var result = this.search(search_content, 5);
+		var arr = [];
+		for(var i in result.items){
+			var cid = result.items[i]['id']
+			var contact = this.contacts_array[cid];
+			arr.push(contact);
+		}
+		return arr
 	}
 });
 

@@ -120,16 +120,16 @@ Date.prototype.Format = function (fmt) { //author: meizz
 window.ichat_config = {
 	version: 'v0.1.0',
 	debug:true,
-	chat_server_url:'127.0.0.1:4567',
-	staic_api_server_url:'127.0.0.1:4566',
+	chat_server_url:'at35.com:4567',
+	staic_api_server_url:'at35.com:4566',
 	// chat_server_url:'127.0.0.1:4567',
 	chat_server_options:{
-		// url : 'http://at35.com:4567/faye',
-		url : 'http://127.0.0.1:4567/faye',
+		url : 'http://at35.com:4567/faye',
+		// url : 'http://127.0.0.1:4567/faye',
 		timeout : 120,
 		retry		: 5
 	},
-	contact_cell_height:80,
+	contact_cell_height:44,
 	get_websql_db:function(){
 		if(!window.openDatabase) {
 			alert("Databases are not supported in this browser");

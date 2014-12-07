@@ -2,6 +2,7 @@ Zepto(function($){
   console.log('Ready to Zepto!')
 	// Global
 	var contact_storage = new CurrentUserContactStorage();
+	var myScroll;
 	
 	function log(t){
 		console.log('[LOG] '+ t);
@@ -35,6 +36,8 @@ Zepto(function($){
 			var html = get_contacts_html(contact)
 			$('#contact_container').append(html);
 		}
+		
+		myScroll.refresh();
 	}
 	
 	function test_search_5(){
@@ -68,18 +71,32 @@ Zepto(function($){
 		
 		return html;
 	}
- 
-	$('a').live('click',function(){
-		var c = $(this).parent();
-		var i  = $('#chat_session_container').children('li').index(c)
+	
+	/**
+	 * 自动滚动到最后一条
+	 */
+	function scroll_to_bottom(){
+		// dom变化，所以这里强制刷新一下。
+ 		myScroll.refresh();
+		// 定位到最后一个li
+		var c = $('#chat_container_id li').length;
+		myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
+	}
+	
+	function init_iscroll_for_msg_container(){
+		myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
 		
-		var sesssion = window.sessions[i];
-
-		storage_current_sesssion(sesssion);
-		log('选择了第 '+i + ' 个会话。');
-	});
+		document.addEventListener('touchmove', function (e) { 
+			e.preventDefault(); 
+		}, false);
+		
+		myScroll.refresh();
+	}
+	
 	
 	function main(){
+		init_iscroll_for_msg_container();
+		
 		// 获取联系人列表
 		get_contacts_info();
 	}
@@ -93,6 +110,8 @@ Zepto(function($){
 		}else{
 			write_dom_with_search_contacts(val);
 		}
+		
+		myScroll.refresh();
 	});
 	
 	$('.bar_right_add').click(function(){

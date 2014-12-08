@@ -149,7 +149,7 @@ ul,li{
 	border-radius: 4px;
 	float: left;
 	position: absolute;
-	top: 6px;
+	top: 7px;
 	left: 47px;
 	right: 55px;
 	padding: 0 9px;
@@ -168,12 +168,12 @@ ul,li{
 	position: absolute;
 	top: 6px;
 	right: 5px;
-	width: 50px;
+	width: 55px;
 	line-height: 30px;
 	text-align: center;
 	background: none;
 	border: none;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 /*聊天详情*/

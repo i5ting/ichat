@@ -26,6 +26,11 @@
 	margin-right: 10px;
 }
 
+.footer_btn{
+	padding:10px;
+	margin-top: 20px;
+}
+
 .content .btn{
 	width: 48%;
 	height:44px;
@@ -34,5 +39,5 @@
 }
 
 .btn_login{
-	margin:0 2% 0 1%;
+	margin-right: 2%;
 }

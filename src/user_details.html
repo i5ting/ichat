@@ -8,8 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="./lib/css/ratchet.min.css">
     <link rel="stylesheet" href="./lib/css/ratchet-theme-ios.min.css">
-    <!-- <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/chat.css"> -->
+    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/user_details.css">
     <script src="http://at35.com:4567/faye/client.js"></script>
     <script src="./lib/js/zepto.min.js"></script>
@@ -22,7 +21,7 @@
   </head>
   <body>
     <header class="bar bar-nav">
-      <a class="icon icon-left-nav pull-left fonts" href="address_book.html" data-ignore="push" data-transition="slide-out">通讯录</a>
+      <a class="icon icon-left-nav pull-left fonts" href="contact.html" data-ignore="push" data-transition="slide-out">通讯录</a>
       <a class="icon icon-more pull-right" href="information.html" data-ignore="push"></a>
       <h1 class="title">详细资料</h1>
     </header>
@@ -47,8 +46,10 @@
         
            </ul>
           </div>
-          <a class="btn btn-positive btn_login" href="chat.html" data-ignore="push">发消息</a>
-          <a class="btn btn_login chat_btn">视频聊天</a>
+          <a class="btn btn-positive btn_login" id='login_btn'href="chat.html" data-ignore="push">发消息</a>
+         <a class="btn btn-positive">视频聊天</a>  
+         <!--  <a class="btn btn-positive btn_login" href="chat.html" data-ignore="push">发消息</a>
+         <a class="btn btn_login chat_btn">视频聊天</a> -->
     </div><!-- /.content -->
   </body>
 </html>

@@ -16,8 +16,9 @@
 		<script src="./lib/js/miniobj.min.js"></script>
     <script src="./lib/js/sifter.min.js"></script>
     <script src="./lib/js/iChatClient.js"></script>
+		<script src="./js/localstorage.js"></script>
 		<script src="./js/config.js"></script>
-    <script src="./js/chat.js"></script>
+    <script src="./js/register.js"></script>
   </head>
   <body>
     <header class="bar bar-nav">
@@ -27,19 +28,21 @@
     <div class="content">
       <form>
         <input type='text' name="username" placeholder="用户名">
-        <input type='password' name="password" placeholder="密码" >
-				<input type='text' name="avatar" placeholder="头像" >
-				<input type='text' name="address" placeholder="地址" >
-     </form>    
-     <a class="btn btn-positive btn_login" href="login.html" data-ignore="push">登录</a>
-     <a class="btn btn-positive">注册</a>  
+        <input type='text' name="password" placeholder="密码"  value='000000'>
+				<input type='text' name="avatar" placeholder="头像"  value='1.jpg'>
+				<input type='text' name="address" placeholder="地址"  value='beijing'>
+      </form>    
+      <!-- <a class="btn btn-positive btn_login" href="login.html" data-ignore="push">登录</a> -->
+		 	<center>
+     		<a class="btn btn-positive" id='register_btn'>注册</a>  
+	 		</center>
     </div>
     <nav class="bar bar-tab">
       <a class="tab-item" href="index.html" data-ignore="push">
         <span class="icon icon1"></span>
         <span class="tab-label">微信</span>
       </a>
-      <a class="tab-item" href="address_book.html">
+      <a class="tab-item" href="contact.html">
         <span class="icon icon2"></span>
         <span class="tab-label">通讯录</span>
       </a>

@@ -3,7 +3,7 @@
     "user": {
       "uid": "1",
       "name": "世龙",
-      "avarta": "shilong.png",
+      "avatar": "shilong.png",
       "address": "beijing"
     },
     "sessions": [
@@ -18,25 +18,25 @@
           {
             "uid": "12",
             "name": "阿虎",
-            "avarta": "ahu.png",
+            "avatar": "1.png",
             "address": "beijing"
           },
           {
             "uid": "13",
             "name": "marco",
-            "avarta": "ahu.png",
+            "avatar": "2.png",
             "address": "beijing"
           },
           {
             "uid": "14",
             "name": "李文虎",
-            "avarta": "ahu.png",
+            "avatar": "3.png",
             "address": "beijing"
           },
           {
             "uid": "15",
             "name": "张卓",
-            "avarta": "ahu.png",
+            "avatar": "4.png",
             "address": "beijing"
           }
         ]
@@ -52,7 +52,7 @@
           {
             "uid": "19",
             "name": "高宁",
-            "avarta": "gaoning.png",
+            "avatar": "5.png",
             "address": "beijing"
           }
         ]
@@ -62,13 +62,13 @@
         "name": "柯织",
         "type": "p2p",
         "avatar": "avatar_kezhi.png",
-        "last_message": "我是柯织，我是胖子，来公司很久很久了，技术还行，就是很懒，领导我错了，屡教不改，你批评我吧",
+        "last_message": "我是柯老师",
         "last_update_time": "2014-12-02 11:18:05",
         "users": [
           {
             "uid": "19",
             "name": "高宁",
-            "avarta": "gaoning.png",
+            "avatar": "6.png",
             "address": "beijing"
           }
         ]

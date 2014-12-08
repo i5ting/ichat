@@ -28,8 +28,13 @@ Zepto(function($){
 			log('发送信息内容是：'+input_text);
 		
 			// $.extend(target, [source, [source2, ...]])  ⇒ target
-			var msg = config.get_msg({
+			var msg_content = {
 				text: input_text
+			}
+			var msg_content_str = JSON.stringify(msg_content);
+			
+			var msg = config.get_msg({
+				msg:msg_content_str
 			});
 			
 			// alert('send_msg_btn');
@@ -57,6 +62,25 @@ Zepto(function($){
 		client.leave('foo');
 	}
 	
+	function get_message_content(message){
+		var msg = new Message();
+		var type = '0'
+		if(message.type == 'undefined'){
+			type = message.type;
+		}
+		msg.type = type;
+		msg.mid = message.mid;
+		msg.uid = message.uid;
+		msg.uname = message.uname;
+		msg.avatar = message.avatar;
+		msg.sid = message.sid;
+		msg.sname= message.sname;
+		msg.timestamp = message.timestamp;
+		msg.msg = message.msg;
+ 	 
+		return msg.get_msg_content();
+	}
+	
 	function write_msg_content_to_dom(msg){
 		// 默认是别人，左侧
 		var is_myself = false;
@@ -74,17 +98,21 @@ Zepto(function($){
 	}
 	
 	function write_left_msg_content_to_dom(msg){
+		var msg_content = get_message_content(msg);
+		
+		var avatar = '../images/avatar/'+ msg.avatar +'';
+		//../images/defaultimg.jpg
 		var received_msg_html = "<li class='msgitem leftitem clearfix'>"
 			+"	<div class='chathead pull-left'>"
 			+"		<a target='_blank' href='#'>"
-			+"			<img src='../images/defaultimg.jpg' alt=''>"
+			+"			<img src='" + avatar + "' alt=''><p>"+ msg.uname +"</p>"
 			+"		</a>"
 			+"	</div>"
 			+"	<div class='msg-content-header pull-left'></div>"
 			+"	<div class='msg-content-body pull-left'>"
 			+"		<a class='close' href='#' style='display: none;'></a>"
 			+"		<div class='msg-content'>"
-			+"			<p class='abstract'>" + msg.text + "</p>"
+			+"			<p class='abstract'>" + msg_content + "</p>"
 			+"			<span class='chat-time text-right'>2012-5-28 3:35</span>"
 			+"		</div>"
 			+"	</div>"
@@ -94,12 +122,14 @@ Zepto(function($){
 	}
 	
 	function write_right_msg_content_to_dom(msg){
+		var msg_content = get_message_content(msg);
+		
 		var received_msg_html = "<li class='msgitem rightitem clearfix'>"
  				+"<div class='msg-content-header pull-right'></div>"
  				+"<div class='msg-content-body pull-right'>"
  					+"<a class='close' href='#' style='display: none;'>"+"</a>"
  					+"<div class='msg-content'>"
- 						+"<p class='abstract'>"+ msg.text +"</p>"
+ 						+"<p class='abstract'>"+ msg_content +"</p>"
  						+"<span class='chat-time text-right'>2012-5-28 3:35</span>"
  					+"</div>"
  				+"</div>"
@@ -109,6 +139,9 @@ Zepto(function($){
 		$('#chat_container_id').append(received_msg_html);
 	}
 	
+	/**
+	 * 自动滚动到最后一条
+	 */
 	function scroll_to_bottom(){
 		// dom变化，所以这里强制刷新一下。
  		myScroll.refresh();
@@ -127,16 +160,29 @@ Zepto(function($){
 	
 	init();
 	
-	
+
 	function init(){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
 		
+		Message.get_messages_with_current_session(function(messages){
+			for(var i in messages){
+				var msg = messages[i];
+				
+				// 只收不存，存的事儿交给Message Listners
+				write_msg_content_to_dom(msg);
+			}
+			scroll_to_bottom()
+		});
+		
 		// 加入到聊天
 		client.join(current_topic, function(message) {
 		  // handle message
-			// alert(message.text);
+			
+			// 只收不存，存的事儿交给Message Listners
 			write_msg_content_to_dom(message);
+			
+			// 自动滚动到最后一条
 			scroll_to_bottom();
 			
 			config.dump_message(message);

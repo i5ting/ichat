@@ -50,6 +50,9 @@ Zepto(function($){
 	//     }
 	// }
 	
-
+	$('#clear_history_btn').click(function(){
+		config.clear_history();
+		alert('清理完成！');
+	});
 	
 });

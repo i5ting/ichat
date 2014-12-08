@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+
+var user_service = require('../../../service/user/index');
+
 /* GET users listing. */
 router.post('/new', function(req, res) {
 	
@@ -81,9 +84,7 @@ router.post('/login', function(req, res) {
 	
 });
 
-router.get('/check', function(req, res) {
-  res.send('respond with a resource');
-});
+router.post('/del', user_service.del);
 
 
 module.exports = router;

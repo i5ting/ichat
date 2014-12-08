@@ -27,3 +27,11 @@
 	// username: sang
 	// password: 0
 
+## user del
+
+	post 
+	
+	http://127.0.0.1:5555/api/v0.1.0/users/del
+
+	// username: sang
+

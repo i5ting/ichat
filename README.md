@@ -5,6 +5,25 @@ it's an im client like webchat
 
 ![](chat.gif)
 
+## History
+
+- v0.1.0
+	- 支持1--9.jpg作为头像
+	- 聊天
+	- 注册，登录
+	- 用户消息历史，支持用户切换，消息正常
+	- 发送消息后自动滚到底部
+	- 引入了miniobject
+	- add pre-commint for check conflict
+	- 删除用户(接口已有，没有界面)
+	- 本地修改头像
+	- 清空本地历史记录
+	- 修改头像同步到服务器（todo **今天必须完成**）
+	- 服务器缓存消息历史（todo v0.2.0）
+	- 通讯录功能（todo 【静态api和搜索】的已经完成）
+	- 创建会话保存到服务器（todo）
+	- 监听会话change（todo）
+
 ## run
 
 启动服务器（src目录下面）

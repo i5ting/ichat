@@ -305,8 +305,6 @@ window.ichat_config = {
 }
 
 
-
-
 Class('MessageBase',{
 	config:function(){
 		return ichat_config;

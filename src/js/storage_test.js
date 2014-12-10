@@ -15,9 +15,71 @@ Class('CollectionBase',{
 });
 
 
-Class('LocalStore',{
+
+Class('StorageBase',{
+	constructor:function(){
+
+	},
+	debug:true,
+	check_if_not_support:function(){
+		this.log('暂时未实现');
+	},
+	log:function(t){
+		if(this.debug == true)
+			console.log('[LocalStore LOG] '+t);
+	},
+	dump:function(t){
+		if(debug == true)
+			console.log('[LocalStore Dump] '+t);
+	},
+	_add:function(obj){
+		if(this.check_if_exist() == true){
+			console.log('重复不能添加');
+			return;
+		}
+		//
+		this.content_arr.push(obj);
+	},
+	_add_force:function(obj){
+		this.log('暂时未实现');
+	},
+	check_if_exist:function(){
+		//TODO:
+		this.log('暂时未实现');
+		return true;
+	},
+	add_if:function(obj){
+		//如果使用此方法，就是要检测是否已存在的。
+		this.log('暂时未实现');
+	},
+	add:function(obj){
+		this.log('暂时未实现');
+	},
+	save:function(){
+		this.log('暂时未实现');
+	},
+	save_array:function(){
+		this.log('暂时未实现');
+	},
+	get_array:function(){
+		this.log('暂时未实现');
+	},
+	all:function(){
+		this.log('暂时未实现');
+	},
+	get:function(index){
+		this.log('暂时未实现');
+	},
+	drop:function(){
+		this.log('暂时未实现');
+	}
+});
+
+var storageBase = new StorageBase();
+
+Class('LocalStore', storageBase, {
 	constructor:function(key){
-		if(this.check_if_not_support() == false){
+		if(this.check_if_not_support() == true){
 		  console.log('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.')
 			return;
 		}
@@ -56,6 +118,31 @@ Class('LocalStore',{
 	},
 	drop:function(){
 		store.remove(this.key)
+	},
+	check_if_exist:function(){
+    //TODO:
+    return true;
+	},
+	add_if:function(obj){
+	  //如果使用此方法，就是要检测是否已存在的。
+	  this._add(obj);
+	},
+	add:function(obj){
+	  this._add_force(obj);
+	},
+	save:function(){
+	  this.save_array();
+	},
+	_add:function(obj){
+		if(this.check_if_exist() == true){
+			console.log('重复不能添加');
+			return;
+		}
+		//
+		this.content_arr.push(obj);
+	},
+	_add_force:function(obj){
+		this.content_arr.push(obj);
 	}
 });
 
@@ -63,6 +150,22 @@ LocalStore.clear = function(){
 	// Clear all keys
 	store.clear()
 }
+
+Class('WebSQLStore', storageBase, {
+	constructor:function(key){
+		if(this.check_if_not_support() == true){
+		  alert('WebSQLStore is not supported by your browser.')
+			return;
+		}
+		 
+	},
+	check_if_not_support:function(){
+		this.log('暂时未实现' + window.openDatabase);
+		return !window.openDatabase;
+	},
+
+});
+
 
 /**
  *
@@ -100,64 +203,51 @@ Class('Collection',{
 	MEMORY : 0,		
 	WEBSQL : 1,
 	INDEXDB : 2,
-	LOCALS_TORAGE : 3
+	LOCAL_STORAGE : 3
 }, LocalStore, CollectionBase, {
 	constructor:function(key){
 		this.key = key;
 		
 		// 默认引擎使用localstorage
-		this.engine = this.LOCALS_TORAGE;
+		this.engine = this.LOCAL_STORAGE;
+		this.change_engine();
 		
 		// this.drop();
 		this.content_arr = [];
 	},
-	_add:function(obj){
-		if(this.check_if_exist() == true){
-			console.log('重复不能添加');
-			return;
-		}
-		//
-		this.content_arr.push(obj);
-	},
-	_add_force:function(obj){
-		this.content_arr.push(obj);
+	apply:function(des, src) {
+	  if (!des) {
+      des = {};
+    }
+    if (src) {
+	    for (var i in src) {
+        des[i] = src[i];
+	    }
+    }
+    return des;
 	},
 	use_websql:function(){
 		this.engine = this.WEBSQL;
+		this.change_engine();
 	},
 	change_engine:function(){
 		// 此处继承
-		var engine = this.engine();
-		switch (engine)
+		switch (this.engine)
 		{
 		case this.WEBSQL:
-		  return new WebsqlDataLayer(); 
+			var a = new WebSQLStore(this.key);
+			this.apply(this,a);
 		  break;
 		case this.INDEXDB:
 			return new IndexdbDataLayer(); 
 		  break;
-		case this.LOCALS_TORAGE:
-			return new LocalstorageDataLayer(); 
+		case this.LOCAL_STORAGE:
+			var a = new LocalStore(this.key);
+			this.apply(this,a);
 		  break;
 		default:
 		  return new MemoryDataLayer();
 		}
 		
-	},
-	check_if_exist:function(){
-		//TODO:
-		return true;
-	},
-	add_if:function(obj){
-		//如果使用此方法，就是要检测是否已存在的。
-		this._add(obj);
-	},
-	add:function(obj){
-		this._add_force(obj);
-	},
-	save:function(){
-		this.save_array();
 	}
-	
-	
 });

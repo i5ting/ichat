@@ -315,6 +315,7 @@ Class('MessageBase',{
 });
 
 var messageBase = new MessageBase
+	
 Class('Message', messageBase, {
 	constructor:function(type,mid, uid, uname,avatar, sid, sname, timestamp, msg){
 		this.type = type;
@@ -328,16 +329,22 @@ Class('Message', messageBase, {
 		this.msg = msg;
 		
 		// this.drop();
-		this.create();
+		// this.create();
+		
+		this.db = new Collection('Message');
+		this.db.use_websql();
 	},
 	values:function(obj){
 		Class('Dummy', obj);
 		Dummy.call(this);
 	},
 	drop:function(){
-		var sql = 'DROP TABLE message;';
-	
-		this.exec_sql(sql);
+		// var sql = 'DROP TABLE message;';
+		//
+		// this.exec_sql(sql);
+		this.db.drop(function(){
+			console.log('drop ok');
+		});
 	},
 	//cuid是当前用户id
 	create:function(){
@@ -363,21 +370,37 @@ Class('Message', messageBase, {
 			console.log('当前用户未登录，所以不记录历史');
 			return;
 		}
-
-		var sql = "insert into message ('type','mid','uid','uname','avatar','sid','sname','timestamp','cuid','msg') values('"
-				+ this.type +"','" 
-				+ this.mid +"','" 
-				+ this.uid +"','" 
-			  + this.uname +"','" 
-				+ this.avatar + "','" 
-				+ this.sid + "',' " 
-				+ this.sname+"','"
-				+ this.timestamp +"',' "
-				+ cuid +"',' "
-				+ this.msg 
-			+ "')";
 		
-		ichat_config.exec_sql(sql);
+		var obj = {
+			'type':this.type,
+			'mid':this.mid, 
+			'uid':this.uid,
+			'uname':this.uname,
+			'avatar':this.avatar,
+			'sid':this.sid,
+			'sname':this.sname,
+			'timestamp':this.timestamp,
+			'msg':this.msg,
+			'cuid':cuid
+		}
+		
+		this.db.add(obj);
+		this.db.save();
+
+		// var sql = "insert into message ('type','mid','uid','uname','avatar','sid','sname','timestamp','cuid','msg') values('"
+		// 		+ this.type +"','"
+		// 		+ this.mid +"','"
+		// 		+ this.uid +"','"
+		// 	  + this.uname +"','"
+		// 		+ this.avatar + "','"
+		// 		+ this.sid + "',' "
+		// 		+ this.sname+"','"
+		// 		+ this.timestamp +"',' "
+		// 		+ cuid +"',' "
+		// 		+ this.msg
+		// 	+ "')";
+		
+		// ichat_config.exec_sql(sql);
 	},
 	get_msg_content:function(){
 		if(this.type=='undefined'){

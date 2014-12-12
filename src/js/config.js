@@ -429,7 +429,7 @@ Message.get_messages_with_current_session = function(cb){
 	
 }
 
-Class('SessionLisner',MessageBase, {
+Class('SessionLisner',messageBase, {
 	constructor:function(one_session){
 		this.session = one_session;
 		
@@ -441,15 +441,16 @@ Class('SessionLisner',MessageBase, {
 		var current_session_id = this.session['sid'];
 		var current_topic = this.config.get_current_topic_with_session_id(current_session_id);
 	
+		var _instance = this;
 		this.client.join(current_topic, function(message) {
 		  // handle message
 			
-			if(this.last_msg_id != message.mid){
+			if(_instance.last_msg_id != message.mid){
 				console.log('收到的信息是：'+message.text);
 				//TODO: 写到websql里
-				this.save_message_to_web_sql(message);
+				_instance.save_message_to_web_sql(message);
 				
-				this.last_msg_id = message.mid;
+				_instance.last_msg_id = message.mid;
 			}else{
 				console.log('收到的信息是重复的，丢弃');
 			}
@@ -488,7 +489,7 @@ Class('SessionLisner',MessageBase, {
 		});
 	}
 */
-Class('CurrentUserContactStorage',MessageBase, {
+Class('CurrentUserContactStorage',messageBase, {
 	constructor:function(){
 		this.current_user = ichat_config.get_current_user();	
 		this.cuid = this.current_user['_id'];
@@ -601,7 +602,7 @@ Class('CurrentUserContactStorage',MessageBase, {
 	}
 });
 
-Class('ContactStorageItem',MessageBase, {
+Class('ContactStorageItem',messageBase, {
 	constructor:function(obj){
 		this.group_id = obj.group_id;
 		this.group_name = obj.group_name;

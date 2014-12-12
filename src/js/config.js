@@ -310,11 +310,12 @@ Class('MessageBase',{
 		return ichat_config;
 	},
 	exec_sql:function(sql){
-		this.config().exec_sql(sql);
+		ichat_config.exec_sql(sql);
 	}
 });
 
-Class('Message', MessageBase, {
+var messageBase = new MessageBase
+Class('Message', messageBase, {
 	constructor:function(type,mid, uid, uname,avatar, sid, sname, timestamp, msg){
 		this.type = type;
 		this.mid = mid;

@@ -1,3 +1,6 @@
+/*! Collection - v0.1.0 - 2014-12-12
+* https://github.com/i5ting/Collection.js
+* Copyright (c) 2014 alfred sang; Licensed MIT */
 // use https://github.com/marcuswestin/store.js
 // 最核心的想法，
 // 用localstorage怎么存储现在的数据
@@ -168,7 +171,10 @@ Class('WebSQLStore', storageBase, {
 {
 	key_arr :[],
 	val_arr :[],
+	//返回 "type string, mid string"
 	k_v_pair_arr :[],
+	// a = '1',b=2
+	k_v_equal_arr :[],
 	is_set_table_meta_flag:false,
 	get_websql_db:function(){
 		return openDatabase('db_ichat', '1.0', 'DB of im', 2 * 1024 * 1024); 
@@ -225,14 +231,22 @@ Class('WebSQLStore', storageBase, {
 		}
 	},
 	_create_table:function(obj){
-		var table_name = this.key;
-		var table_meta = this._get_table_meta(obj);
-		var sql = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' ('
-			+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
-			+ table_meta
-			+')';
-		this.exec_sql(sql);
-		this._table_exist = true;
+		
+		var _instance = this;
+		this.is_exist(function(is_exist){
+			_instance._table_exist = is_exist;
+			
+			if(is_exist == false){
+				var table_name = _instance.key;
+				var table_meta = _instance._get_table_meta(obj);
+				var sql = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' ('
+					+'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+					+ table_meta
+					+')';
+				_instance.exec_sql(sql);
+				_instance._table_exist = true;
+			}
+		});
 	},
 	// typeof 运算符把类型信息当作字符串返回。typeof 返回值有六种可能：
 	// "number," "string," "boolean," "object," "function," 和 "undefined."
@@ -267,6 +281,8 @@ Class('WebSQLStore', storageBase, {
 		var k_v_pair_arr = [];
 		var key_arr = [];
 		var val_arr = [];
+		var k_v_equal_arr = [];
+			
 		
 		for(var attr in obj){
 			var value = obj[attr];
@@ -275,12 +291,16 @@ Class('WebSQLStore', storageBase, {
 			key_arr.push(this.get_string(attr));
 			val_arr.push(this.get_string(value));
 			k_v_pair_arr.push(str);
+			
+			var str2 = attr + '=' +  this.get_string(value)
+			k_v_equal_arr.push(str2);
 		}
 		//['type','mid','uid','uname','avatar','sid','sname','timestamp','cuid','msg']
 		this.key_arr = key_arr;
 		this.val_arr = val_arr;
 		
 		this.k_v_pair_arr = k_v_pair_arr;
+		this.k_v_equal_arr = k_v_equal_arr;
 		
 		this.is_set_table_meta_flag = true
 	},
@@ -296,22 +316,75 @@ Class('WebSQLStore', storageBase, {
 			// 设置当前表的元信息
 			this._set_table_meta(obj);
 		}else{
-			this.log("当前表已经设置过meta信息了，不需要重复设置");
+			this.log("当前表已经设置过meta信息了，或者，表就不存在");
 		}
 	},
 	_save:function(obj){
-		this.set_table_meta(obj);
-		var attr_str = this.key_arr.join(",");
-		var values_str = this.val_arr.join(",");
-		
-		var sql = "insert into " + this.key + " (" + attr_str + ") values(" + values_str + ")";
-
-		this.exec_sql(sql);
+		this._save_with(obj);
 	},
-	_is_table_exist:function(table_name){
-		return false;
-		var sql= "select count(*) from sqlite_master where type='table' and name='" + table_name + "'";
+	_save_with:function(obj, cb_succ, cb_fail){
+		var _instance = this;
+		this._is_record_exist(obj,function(){
+			// cb_exist
+			this.log("该记录已经存在，不需要插入");
+			if(cb_succ){
+				cb_succ();
+			}
+		},function(){
+			// cb_not_exist
+			this.log("该记录不存在，准备保存");
+			var attr_str = _instance.key_arr.join(",");
+			var values_str = _instance.val_arr.join(",");
+		
+			var sql = "insert into " + _instance.key + " (" + attr_str + ") values(" + values_str + ")";
+			
+			if(cb_succ && cb_fail){
+				_instance.exec_sql(sql, cb_succ ,cb_fail);
+			}else if(cb_succ){
+				_instance.exec_sql(sql, cb_succ ,function(){
+					console.log('cb_succ函数存在，但保存失败');
+				});
+			}else{
+				_instance.exec_sql(sql);
+			}
+			
+			this.log("该记录保存完成");
+		});	
+	},
+	_is_record_exist:function(obj, cb_exist, cb_not_exist){
+		this.set_table_meta(obj);
+		this._get_record_count(obj,function(count){
+			if(count > 0){
+				cb_exist();
+			}else{
+				cb_not_exist();
+			}
+		});
+	},
+	_get_record_count:function(obj, cb){
+		this.set_table_meta(obj);
+		var where_condition = this.k_v_equal_arr.join(" and ");
+		var sql= "select count(0) as count from " + this.key + " where " + where_condition;
+		//this.exec_sql(sql);
+		this.exec_sql_with_result(sql, function(data){
+			cb(data[0].count);
+		});
+	},
+	_is_table_exist:function(callback){
+		var sql= "select count(0) as count from sqlite_master where type='table' and name='" + this.key + "'";
+		//this.exec_sql(sql);
+		this.exec_sql_with_result(sql, function(data){
+			callback(data[0].count);
+		});
+	},
+	_get_all_table_names:function(callback){
+		var sql= "select * from sqlite_master where type='table'";
+		//this.exec_sql(sql);
+		this.exec_sql_with_result(sql, function(data){
+			callback(data);
+		});
 	}
+	
 }, 
 {
 	constructor:function(key){
@@ -320,10 +393,15 @@ Class('WebSQLStore', storageBase, {
 			return;
 		}
 		
-		this._table_exist = this._is_table_exist(key) ? true : false;
+		var _instance = this;
+		this.is_exist(function(is_exist){
+			_instance._table_exist = is_exist;
+		});
+		
+		this.key = key;
 	},
 	check_if_not_support:function(){
-		this.log('暂时未实现' + window.openDatabase);
+		//this.log('暂时未实现' + window.openDatabase);
 		return !window.openDatabase;
 	},
 	add_if:function(obj){
@@ -331,35 +409,94 @@ Class('WebSQLStore', storageBase, {
 		this.log('暂时未实现');
 	},
 	add:function(obj){
-		if(this._table_exist == false){
-			this._create_table(obj);
-		}
+		this._create_table(obj);
 		
 		this.content_arr.push(obj);
 	},
-	save:function(){
+	save:function(cb_succ, cb_fail){
+		
+		if(cb_succ && cb_fail){
+			this.save_array(cb_succ, cb_fail);
+			return;
+		}
+		
+		if(cb_succ){
+			this.save_array(cb_succ);
+			return;
+		}
+		
+		// default 
 		this.save_array();
 	},
-	save_array:function(){
+	save_array:function(cb_succ, cb_fail){
+		if(this.content_arr.length == 0 ){
+			this.log("当前没有需要保存的内容");
+			cb_succ();
+			return;
+		}
 		for(var i in this.content_arr){
 			var obj = this.content_arr[i];
-			this._save(obj);
+			
+			if(i == (this.content_arr.length - 1)){
+				this._save_with(obj, function(){
+					// succ
+					if(cb_succ)
+						cb_succ();
+				},function(){
+					// fail
+					if(cb_fail)
+						cb_fail();
+				});
+			}else{
+				this._save(obj);
+			}
 		} 
 		// this.fetch_all();
 	},
-	get_array:function(){
-		this.log('暂时未实现');
+	get_array:function(cb){
+		if(cb){
+			cb(this.content_arr);
+		}
+		return this.content_arr;
 	},
-	all:function(){
-		this.log('暂时未实现');
+	load_all:function(cb){
+		var sql = "select * from " + this.key;
+		this.exec_sql_with_result(sql, function(data){
+			if(cb)
+				cb(data);
+			// return data;
+		});
+		// this.log('暂时未实现');
+	},
+	all:function(cb){
+		return this.get_array(cb);
 	},
 	get:function(index){
-		this.log('暂时未实现');
+		return this.content_arr[index];
 	},
-	drop:function(){
-		this.log('暂时未实现');
+	drop:function(succ_cb){
+		this.log('执行drop table '+this.key+'');
+		var sql = "drop table " + this.key + ";";
+		
+		var _instance = this;
+		this.is_exist(function(is_exist){
+			if(is_exist == true){
+				_instance.exec_sql(sql);
+			}
+			if(succ_cb)
+				succ_cb();
+		});
+		
+	},
+	is_exist:function(cb){
+		this._is_table_exist(function(data){
+			if(data == 1){
+				cb(true);
+			}else{
+				cb(false);
+			}
+		});
 	}
-
 });
 
 

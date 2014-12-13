@@ -203,8 +203,13 @@ window.ichat_config = {
 	 */
 	get_api_user_login_url : function(){
 		return this.get_api_base_url('/users/login')
-	}
-	,
+	},
+	/**
+	 * 修改用户头像地址
+	 */
+	get_api_user_update_avatar_url : function(){
+		return this.get_api_base_url('/users/login')
+	},
 	get_current_topic_with_session_id:function(current_session_id){
 		return 'foo' + '_' + current_session_id;
 	}
@@ -234,10 +239,24 @@ window.ichat_config = {
 			return true;
 		}
 	},
-	change_avatar:function(pic){
+	change_avatar:function(pic,cb_succ){
 		var user = this.get_current_user();
 		user.avatar = pic;
 		this.set_current_user(user);
+		
+		var current_user_uid = user['_id'];
+		
+		var url = this.get_api_user_update_avatar_url();
+		$.post(url, {
+			uid:current_user_uid,
+			pic:pic
+		}, function(data){
+			if(data.status.code == 0){
+				cb_succ();
+			}else{
+				alert("保存出错："+data.status.msg);
+			}
+		});
 	},
 	clear_history:function(){
 		var sql = 'drop table message;';

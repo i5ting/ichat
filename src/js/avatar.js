@@ -4,8 +4,10 @@ Zepto(function($){
 	
 	$('#change_avatar_btn').click(function(){
 		var a = $("select[name='avatar']").val();
-		config.change_avatar(a);
-		alert('保存成功');
+		config.change_avatar(a,function(){
+			alert('保存成功');
+		});
+		
 	});
 });
 

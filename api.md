@@ -35,3 +35,11 @@
 
 	// username: sang
 
+## user update_avatar
+
+	post 
+	
+	http://127.0.0.1:5555/api/v0.1.0/users/update_avatar
+	
+	uid = 5484050b059adf00009e6a09/pic = 9.png
+	

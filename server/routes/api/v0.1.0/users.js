@@ -86,5 +86,10 @@ router.post('/login', function(req, res) {
 
 router.post('/del', user_service.del);
 
+/**
+ * 更新头像
+ */ 
+router.post('/update_avatar', user_service.update_avatar);
+
 
 module.exports = router;

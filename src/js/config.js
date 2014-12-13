@@ -332,7 +332,7 @@ Class('Message', messageBase, {
 		// this.create();
 		
 		this.db = new Collection('Message');
-		this.db.use_websql();
+		// this.db.use_websql();
 	},
 	values:function(obj){
 		Class('Dummy', obj);

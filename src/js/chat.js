@@ -188,7 +188,7 @@ Zepto(function($){
 			config.dump_message(message);
 		});
 		
-		// init_iscroll_for_msg_container();
+		init_iscroll_for_msg_container();
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();

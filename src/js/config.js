@@ -441,14 +441,25 @@ Message.get_messages_with_current_session = function(cb){
 		return;
 	}
 	
-	var sql = "SELECT * FROM message where sid='" + current_session_id 
-		+ "' and trim(cuid)='" + cuid + "' order by timestamp;";
-	config.log_sql(sql)
-	config.exec_sql_with_result(sql, function(pleaseWork) {
-    console.log(pleaseWork);
-    // any further processing here
-		cb(pleaseWork);
-  });
+	// var sql = "SELECT * FROM message where sid='" + current_session_id
+	// 	+ "' and trim(cuid)='" + cuid + "' order by timestamp;";
+	// config.log_sql(sql)
+	// config.exec_sql_with_result(sql, function(pleaseWork) {
+	//     console.log(pleaseWork);
+	//     // any further processing here
+	// 	cb(pleaseWork);
+	//   });
+	//
+	
+	var collection = new Collection('Message');
+	
+	var obj = {
+		cuid : cuid,
+		sid: current_session_id
+	}
+	collection.search(obj, function(data){
+		cb(data);
+	});
 	
 }
 

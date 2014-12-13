@@ -68,3 +68,7 @@ body {
 .media_address_name{
 	margin-top: 8px;
 }
+/*https://github.com/cubiq/iscroll/issues/119*/
+input {
+  -webkit-user-modify: read-write-plaintext-only;
+}

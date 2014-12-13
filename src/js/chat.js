@@ -147,15 +147,14 @@ Zepto(function($){
  		myScroll.refresh();
 		// 定位到最后一个li
 		var c = $('#chat_container_id li').length;
-		myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
+		// 如果内容为空，iscroll会报错，或找不到节点的。
+		if(c > 0){
+			myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
+		}
 	}
 	
 	function init_iscroll_for_msg_container(){
 		myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
-
-		document.addEventListener('touchmove', function (e) { 
-			e.preventDefault(); 
-		}, false);
 	}
 	
 	init();
@@ -172,6 +171,7 @@ Zepto(function($){
 				// 只收不存，存的事儿交给Message Listners
 				write_msg_content_to_dom(msg);
 			}
+			init_iscroll_for_msg_container();
 			scroll_to_bottom()
 		});
 		
@@ -188,7 +188,7 @@ Zepto(function($){
 			config.dump_message(message);
 		});
 		
-		init_iscroll_for_msg_container();
+		// init_iscroll_for_msg_container();
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();

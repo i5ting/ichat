@@ -28,6 +28,9 @@ Zepto(function($){
 			$('.user_info_container').html('欢迎您，' + username + '。您已经登陆');
 			$('.login_container').hide();
 			$('.logout_container').show();
+			
+			var avatar_url = './images/avatar/'+ avatar +'';
+			$("#user_avatar").attr('src', avatar_url);
 		}else{
 			$('.user_info_container').html('您还没有登陆哦');
 			$('.logout_container').hide();

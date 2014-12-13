@@ -16,11 +16,11 @@ it's an im client like webchat
 	- 引入了miniobject
 	- add pre-commint for check conflict
 	- 删除用户(接口已有，没有界面)
-	- 本地修改头像
+	- 本地修改头像,本地预览头像
 	- 清空本地历史记录
-	- 修改头像同步到服务器（todo **今天必须完成**）
+	- 修改头像同步到服务器
 	- 服务器缓存消息历史（todo v0.2.0）
-	- 通讯录功能（todo 【静态api和搜索】的已经完成）
+	- 通讯录功能（todo 【静态api和搜索】的已经完成，需要签到新的collection上）
 	- 创建会话保存到服务器（todo）
 	- 监听会话change（todo）
 

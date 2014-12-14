@@ -159,10 +159,17 @@ Zepto(function($){
 	
 	init();
 	
-
+	function current_session_lisner(){
+		var one_session = CURRENT_SESSION.get_current_session();
+		var session = new SessionLisner(one_session);
+		session.start_observe();
+	}
+	
 	function init(){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
+		
+		current_session_lisner();
 		
 		Message.get_messages_with_current_session(function(messages){
 			for(var i in messages){

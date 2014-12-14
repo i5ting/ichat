@@ -698,7 +698,6 @@ ContactStorageItem.create_table = function(){
 }
 
 
-
 Class('StaticApi',{
 	session : 'session.json',
 	contact : 'contact.json'
@@ -734,7 +733,9 @@ Zepto(function($){
 		session.start_observe();
 	}
 
-	init_job_for_sessions();
+
+	//监听所有的session，会特别特别慢，所以还是改成监听当前session
+	// init_job_for_sessions();
 	
 });
 	

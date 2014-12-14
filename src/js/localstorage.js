@@ -1,6 +1,12 @@
 function save_obj_with_key_and_object(key, obj){
-	var content = JSON.stringify(obj);
-	window.localStorage.setItem(key, content);
+	try {
+		var content = JSON.stringify(obj);
+		window.localStorage.setItem(key, content);
+	}catch (e) {
+    //使用cookie替代实现
+		alert(e);
+		store.clear();
+  }
 }
 
 function get_object_with_key(key){

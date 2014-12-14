@@ -103,7 +103,7 @@ Zepto(function($){
 		var sesssion = window.sessions[i];
 
 		storage_current_sesssion(sesssion);
-		log('选择了第 '+i + ' 个会话。');
+		alert('选择了第 '+i + ' 个会话。');
 	});
 	
 	/**

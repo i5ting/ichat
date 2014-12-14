@@ -67,7 +67,7 @@ Zepto(function($){
 	
 	function get_p2p_html(session){
 		var chat_page = 'chat.html';
-		var html = "<li class='table-view-cell'>"
+		var html = "<li class='table-view-cell' onclick='myclick()'>"
           +"<a href='" + chat_page + "' data-ignore='push' data-transition='fade'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
@@ -80,6 +80,21 @@ Zepto(function($){
 		return html;
 	}
 	
+	var t1 = null;//这个设置为全局
+	function myclick(){
+	    if (t1 == null){
+	        t1 = new Date().getTime();
+	    }else{       
+	        var t2 = new Date().getTime();
+	        if(t2 - t1 < 500){
+	            t1 = t2;
+	            return;
+	        }else{
+	            t1 = t2;
+	        }
+	    }
+	    /*自己的代码*/
+	}
 	function get_p2g_html(session){
 		var html = "<li class='table-view-cell'>"
           +"<a href='chat.html' data-ignore='push' data-transition='fade'>"
@@ -95,9 +110,11 @@ Zepto(function($){
 	}
 	
 	$('.table-view-cell').live('click',function(){
+		// alert(1);
 		var c = $(this);
 		FastClick.attach(document.body);
 		FastClick.attach(c);
+		
 		var i  = $('#chat_session_container').children('li').index(c)
 		
 		var sesssion = window.sessions[i];
@@ -121,7 +138,22 @@ Zepto(function($){
 	}
 	
 	function init_iscroll_for_msg_container(){
-		myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
+		function iScrollClick(){
+			if (/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent)) return false;
+			if (/Chrome/i.test(navigator.userAgent)) return (/Android/i.test(navigator.userAgent));
+			if (/Silk/i.test(navigator.userAgent)) return false;
+			if (/Android/i.test(navigator.userAgent)) {
+			   var s=navigator.userAgent.substr(navigator.userAgent.indexOf('Android')+8,3);
+			   return parseFloat(s[0]+s[3]) < 44 ? false : true
+		    }
+		}
+		
+		myScroll = new IScroll('#wrapper', {
+			click:iScrollClick(), //调用判断函数
+      scrollbars: true,//有滚动条
+      mouseWheel: true,//允许滑轮滚动
+      fadeScrollbars: true//滚动时显示滚动条，默认影藏，并且是淡出淡入效果
+	 	});
 	}
 	
 	function main(){

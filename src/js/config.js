@@ -261,6 +261,9 @@ window.ichat_config = {
 	clear_history:function(){
 		var sql = 'drop table message;';
 		this.exec_sql(sql);
+		
+		var m = new Collection('Message');
+		m.empty();
 	},
 	// messsage
 	/**

@@ -1,6 +1,7 @@
 Zepto(function($){
   console.log('Ready to Zepto!')
-		
+	var myScroll;
+	
 	function log(t){
 		console.log('[LOG] '+ t);
 	}
@@ -17,6 +18,7 @@ Zepto(function($){
 			sessions  = data.data.sessions;
 			list(sessions);
 			window.sessions = sessions
+			myScroll.refresh();
 		});
 	}
 	
@@ -102,7 +104,26 @@ Zepto(function($){
 		log('选择了第 '+i + ' 个会话。');
 	});
 	
+	/**
+	 * 自动滚动到最后一条
+	 */
+	function scroll_to_bottom(){
+		// dom变化，所以这里强制刷新一下。
+ 		myScroll.refresh();
+		// 定位到最后一个li
+		var c = $('#chat_session_container li').length;
+		// 如果内容为空，iscroll会报错，或找不到节点的。
+		if(c > 0){
+			myScroll.scrollToElement(document.querySelector('#scroller li:nth-child(' + c + ')'))
+		}
+	}
+	
+	function init_iscroll_for_msg_container(){
+		myScroll = new IScroll('#wrapper', { mouseWheel: true, click: true });
+	}
+	
 	function main(){
+		init_iscroll_for_msg_container();
 		// 获取session列表
 		get_sessions_info();
 	}

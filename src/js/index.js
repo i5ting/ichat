@@ -94,8 +94,10 @@ Zepto(function($){
 		return html;
 	}
 	
-	$('a').live('click',function(){
-		var c = $(this).parent();
+	$('.table-view-cell').live('click',function(){
+		var c = $(this);
+		FastClick.attach(document.body);
+		FastClick.attach(c);
 		var i  = $('#chat_session_container').children('li').index(c)
 		
 		var sesssion = window.sessions[i];

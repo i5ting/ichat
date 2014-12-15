@@ -68,7 +68,7 @@ Zepto(function($){
 	function get_p2p_html(session){
 		var chat_page = 'chat.html';
 		var html = "<li class='table-view-cell' onclick='myclick()'>"
-          +"<a href='" + chat_page + "' data-ignore='push' data-transition='fade'>"
+          +"<a class='navigate-right' href='" + chat_page + "' data-ignore='push' data-transition='fade'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
               + "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+session.name + "</p>"
@@ -97,7 +97,7 @@ Zepto(function($){
 	}
 	function get_p2g_html(session){
 		var html = "<li class='table-view-cell'>"
-          +"<a href='chat.html' data-ignore='push' data-transition='fade'>"
+          +"<a  class='navigate-right' href='chat.html' data-ignore='push' data-transition='fade'>"
             +"<img class='media-object pull-left' src='http://placehold.it/42x42'>"
             +"<div class='media-body'>"
 				+ "<span>昨天12:00</span><p style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>"+ session.name + "</p>"

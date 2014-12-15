@@ -21,8 +21,12 @@ body {
 }
 
 h1.title{
-	max-width: 80%;
+	max-width: 93%;
 	min-width: 200px;
+	margin: 0 auto;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .updated-text {

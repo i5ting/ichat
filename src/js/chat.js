@@ -180,6 +180,15 @@ Zepto(function($){
 		session.start_observe();
 	}
 	
+	function bind_enter_event(){
+		document.onkeydown = function(e){ 
+	    var ev = document.all ? window.event : e;
+	    if(ev.keyCode==13) {
+				$('.send_msg_btn').trigger("click");
+      }
+		}
+	}
+	
 	function init(){
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
@@ -214,6 +223,9 @@ Zepto(function($){
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();
+		
+		// 绑定发送按钮回车事件
+		bind_enter_event();
 		
 		// 首次进入，不管有多少消息，一定是到最后一条
 		scroll_to_bottom();

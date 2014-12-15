@@ -20,6 +20,11 @@ body {
 	overflow: hidden; /* this is important to prevent the whole page to bounce */
 }
 
+h1.title{
+	max-width: 80%;
+	min-width: 200px;
+}
+
 .updated-text {
   position: absolute;
   left: 0;

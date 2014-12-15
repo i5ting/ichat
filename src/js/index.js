@@ -110,17 +110,10 @@ Zepto(function($){
 	}
 	
 	$('.table-view-cell').live('click',function(){
-		// alert(1);
 		var c = $(this);
-		FastClick.attach(document.body);
-		FastClick.attach(c);
-		
 		var i  = $('#chat_session_container').children('li').index(c)
-		
 		var sesssion = window.sessions[i];
-
 		storage_current_sesssion(sesssion);
-		alert('选择了第 '+i + ' 个会话。');
 	});
 	
 	/**

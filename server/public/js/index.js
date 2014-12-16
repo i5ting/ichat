@@ -4,12 +4,12 @@ Zepto(function($){
 	var config = window.ichat_config;
 		
 	var myScroll;
-	var current_user = config.get_current_user();	
-	var current_session = config.get_current_session();
-	var user_sessions = config.get_user_sessions();
-	
-	var current_user_uid = current_user['_id'];
-	var current_user_avatar = current_user['avatar'];
+	// var current_user = config.get_current_user();
+	// var current_session = config.get_current_session();
+	// var user_sessions = config.get_user_sessions();
+	//
+	// var current_user_uid = current_user['_id'];
+	// var current_user_avatar = current_user['avatar'];
 	// var current_session_id = current_session['sid'];
 	// var current_session_name = current_session['name'];
 	

@@ -96,6 +96,9 @@ Zepto(function($){
 	}
 	
 	function write_msg_content_to_dom(msg){
+		var current_user = config.get_current_user();	
+		var current_user_uid = current_user['_id'];
+		
 		// 默认是别人，左侧
 		var is_myself = false;
 		
@@ -243,7 +246,7 @@ Zepto(function($){
 			config.dump_message(message);
 		});
 		
-		init_iscroll_for_msg_container();
+		init_chat_iscroll_for_msg_container();
 		
 		// 绑定发送按钮事件
 		bind_send_msg_event();
@@ -351,11 +354,11 @@ Zepto(function($){
 	}
 	
 	$('.table-view-cell').live('click',function(){
-		// var c = $(this);
-// 		// alert(c);
-// 		var i  = $('#chat_session_container').children('li').index(c)
-// 		var sesssion = window.sessions[i];
-// 		storage_current_sesssion(sesssion);
+		var c = $(this);
+		// alert(c);
+		var i  = $('#chat_session_container').children('li').index(c)
+		var sesssion = JSON.parse($(c).attr('data'));
+		storage_current_sesssion(sesssion);
 	});
 	
 	/**
@@ -403,14 +406,70 @@ Zepto(function($){
 		$(".group_chat_box").toggle();
 	})
 	
+	//
+	// login.js
+	var config = window.ichat_config
+
+	function log(t){
+		console.log('[login.html LOG] '+ t);
+	}
+
+	function login_success_callback(){
+		alert('登陆成功');
+		window.location.href='/'
+	}
+
+	function login(username, password){
+		log(config.get_api_user_login_url());
+		$.post(config.get_api_user_login_url(),{
+			username:'' + username,
+			password:'' + password
+		},function(data){
+			// server response 
+			log(data);
+		
+			if(data.status.code == 0){			
+				var current_user = data.data;
+				CURRENT_USER.set_current_user(current_user);
+			
+				// 登陆成功
+				login_success_callback();
+			}else{
+				alert(data.status.msg);
+			}
+	
+		});
+	}
+
+	function login_init(){
+		$('#login_btn').click(function(){
+			var username = $("input[name='username']").val();
+			var	password = $("input[name='password']").val();
+			log(username);
+			log(password);
+			login(username, password);
+		});
+
+		$('#logout_btn').live('click',function(){
+			CURRENT_USER.remove_current_user();
+			window.location.href='me.html'
+		});
+	}
+	
 	window.addEventListener('push', function(e){
 		// alert(111);
 		var url = e.detail.state.url;
 
 		if(case_one(url,/chat\.html/g)){
 			// alert("聊天");
-			// init_with_chat();
+			init_with_chat();
 		}
+		
+		if(case_one(url,/me\.html/g)){
+			// alert("聊天");
+			login_init()
+		}
+		
 		
 		if(case_one(url,/\//g)){
 			// alert("首页");
@@ -423,3 +482,4 @@ Zepto(function($){
 		}
 	});
 });
+

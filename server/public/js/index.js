@@ -351,11 +351,11 @@ Zepto(function($){
 	}
 	
 	$('.table-view-cell').live('click',function(){
-		var c = $(this);
-		// alert(c);
-		var i  = $('#chat_session_container').children('li').index(c)
-		var sesssion = window.sessions[i];
-		storage_current_sesssion(sesssion);
+		// var c = $(this);
+// 		// alert(c);
+// 		var i  = $('#chat_session_container').children('li').index(c)
+// 		var sesssion = window.sessions[i];
+// 		storage_current_sesssion(sesssion);
 	});
 	
 	/**
@@ -394,7 +394,7 @@ Zepto(function($){
 	function main(){
 		init_iscroll_for_msg_container();
 		// 获取session列表
-		get_sessions_info();
+		// get_sessions_info();
 	}
 	
 	main();
@@ -409,13 +409,13 @@ Zepto(function($){
 
 		if(case_one(url,/chat\.html/g)){
 			// alert("聊天");
-			init_with_chat();
+			// init_with_chat();
 		}
 		
-		if(case_one(url,/index\.html/g)){
+		if(case_one(url,/\//g)){
 			// alert("首页");
 			// $('.content').html(index_content)
-			// main();
+			main();
 		}
 		
 		function case_one(url, pattern){

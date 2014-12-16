@@ -1,0 +1,84 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	-ms-touch-action: none;
+}
+
+body,ul,li {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+body {
+/*	font-size: 12px;
+	font-family: ubuntu, helvetica, arial;*/
+	overflow: hidden; /* this is important to prevent the whole page to bounce */
+}
+
+h1.title{
+	max-width: 73%;
+	min-width: 200px;
+	margin: 0 auto;
+	margin-left: 10%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.updated-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 10px 0;
+  font-size: 11px;
+  text-align: center;
+}
+/*底部导航*/
+.icon1{
+	background: url(../images/tabbar_mainframe@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon2{
+	background: url(../images/tabbar_contacts@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon3{
+	background: url(../images/tabbar_discover@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon4{
+	background: url(../images/tabbar_me@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon1.checked{
+	background: url(../images/tabbar_mainframeHL@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon2.checked{
+	background: url(../images/tabbar_contactsHL@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon3.checked{
+	background: url(../images/tabbar_discoverHL@2x.png) no-repeat;
+	background-size: 24px;
+}
+.icon4.checked{
+	background: url(../images/tabbar_meHL@2x.png) no-repeat;
+	background-size: 24px;
+}
+.tab-label.current{
+	color: #0cba09;
+}
+
+.media_address_name{
+	margin-top: 8px;
+}
+/*https://github.com/cubiq/iscroll/issues/119*/
+input {
+  -webkit-user-modify: read-write-plaintext-only;
+}

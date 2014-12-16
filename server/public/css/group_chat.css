@@ -1,0 +1,23 @@
+.bar .header_btn{
+	font-size: 14px;
+	margin-top: 5px;
+	color: #000;
+}
+
+.table_radio_people{
+	margin-top: 45px;
+}
+
+.table_radio_people input{
+	float: left;
+	margin: 10px 10px 0 0;
+}
+
+.checked_box{
+	height: 48px;
+	padding-top: 50px;
+}
+
+.checked_box img{
+	padding: 2px 5px 0;
+}

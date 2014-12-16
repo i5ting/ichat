@@ -1,3 +1,6 @@
+.content {
+	background-color: white;
+}
 
 ul,li{
 	padding: 0;
@@ -10,108 +13,6 @@ ul,li{
 	position: absolute;
 	z-index: 1;
 	top: 45px;
-	bottom: 34px;
-	left: 0;
-	width: 100%;
-/*	background: #ccc;*/
-	overflow: hidden;
-}
-
-/* for iscroll */
-#scroller {
-	position: absolute;
-	z-index: 1;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	width: 100%;
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
-}
-
-/*首页列表内容*/
-.table-view-cell .icon {
-  color: #007aff;
-}
-
-.table-view-cell a img{
-	border-radius: 5px;
-}
-
-/*首页列表内容的时间*/
-.media-body span{
-  font-size: 12px;
-  float: right;
-  color: #bbb;
-}
-
-.table-view-cell>a:not(.btn){
-	padding-right:10px;
-}
-
-/*首页右上角加号*/
-.group_chat_box {
-	background: #000;
-	color: #fff;
-	position: relative;
-	right:-26px;
-	top:53px;
-	float: right;
-	display: inline-block;
-	word-wrap: break-word;
-	word-break: break-all;
-	vertical-align: middle;
-	display: none;
-}
-
-.group_chat_box:before {
-	border-bottom: 6px solid #000;
-	content: "";
-	position: absolute;
-	right: 10px;
-	top:-5px;
-	border-left: 6px solid transparent;
-	border-right: 6px solid transparent;
-}
-
-.group_chat_box ul{
-	margin: 0;
-}
-
-.group_chat_box ul li{
-	background: #000;
-	border-radius: 5px;
-}
-
-
-/*--------chat---------*/
-
-.content {
-	background-color: white;
-}
-
-ul,li{
-	padding: 0;
-	margin: 0;
-	list-style: none;
-}
-
-/* for iscroll */
-#chat_wrapper {
-	position: absolute;
-	z-index: 1;
-	top: 45px;
 	bottom: -8px;
 	left: 0;
 	width: 100%;
@@ -120,7 +21,7 @@ ul,li{
 }
 
 /* for iscroll */
-#chat_wrapper > #scroller {
+#scroller {
 	position: absolute;
 	z-index: 1;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);

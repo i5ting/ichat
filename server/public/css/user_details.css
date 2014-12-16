@@ -1,0 +1,34 @@
+.icon.icon-left-nav.pull-left.fonts{
+    color: black;
+	font-size: 20px;
+}
+
+.card {
+	margin: 10px;
+	overflow: hidden;
+	background-color: #fff;
+}
+
+.table-view-cell.lis span{
+    float: right;
+}
+
+.img{
+	width: 4%;
+	margin-right: 10px;
+}
+
+.footer_btn{
+	padding:10px;
+}
+
+.content .btn{
+	width: 48%;
+	height:44px;
+	line-height: 44px;
+	padding:0;
+}
+
+.btn_login{
+	margin-right: 2%;
+}

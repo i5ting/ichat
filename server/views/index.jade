@@ -1,5 +1,36 @@
-extends layout
+extends layout_mobile
 
 block content
-  h1= title
-  p Welcome to #{title}
+	header(class="bar bar-nav")
+		a(class="icon icon-plus pull-right bar_right_add")
+		div(class="group_chat_box")
+			ul(class="table-view")
+				li(class="table-view-cell")
+					span(class="media-object pull-left")
+						img(src="images/tabbar_mainframe.png" style="width:24px;")
+					div(class="media-body")
+						a(href="group_chat.html" data-ignore="push" style="color:#fff;font-size:14px;") 发起群聊
+		h1(class="title") #{title}
+	div(class="content")
+		ul(class="table-view" id='chat_session_container')
+			each session in sessions
+				li(class='table-view-cell')
+					a(href='chat.html',data-transition='slide-in')
+						img(class='media-object pull-left',src='http://placehold.it/42x42')
+						div(class='media-body')
+							span 昨天12:00
+							p(style='color:#000;width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;')  #{session.name}
+							p(style='font-size:12px;color:#bbb;width:90%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;') #{session.last_message}				
+	nav(class="bar bar-tab")
+		a(class="tab-item",href="#")
+			span(class="icon icon1 checked")
+			span(class="tab-label current") 微信
+		a(class="tab-item",href="contact.html")
+			span(class="icon icon2")
+			span(class="tab-label") 通讯录
+		a(class="tab-item",href="discover.html")
+			span(class="icon icon3")
+			span(class="tab-label") 发现
+		a(class="tab-item",href="me.html")
+			span(class="icon icon4")
+			span(class="tab-label") 我

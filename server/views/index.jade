@@ -12,7 +12,7 @@ block content
 						a(href="group_chat.html" data-ignore="push" style="color:#fff;font-size:14px;") 发起群聊
 		h1(class="title") #{title}
 	div(class="content")
-		ul(class="table-view" id='chat_session_container')
+		ul(class="table-view",id='chat_session_container')
 			each session in sessions
 				li(class='table-view-cell')
 					a(href='chat.html',data-transition='slide-in')

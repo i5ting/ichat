@@ -33,7 +33,7 @@ Zepto(function($){
 		var current_session_id = current_session['sid'];
 		var current_session_name = current_session['name'];
 		
-		$('.send_msg_btn').click(function(){
+		$('.send_msg_btn').off('click').click(function(){
 			var input_text = $.trim($('#msg_input_text_id').val());
 			log('发送信息内容是：'+input_text);
 		
@@ -56,20 +56,6 @@ Zepto(function($){
 				alert('There was a problem: ' + error.message);
 			});
 		});
-	}
-
-	function test(){
-		setTimeout(function(){
-			var current_topic = config.get_current_topic_with_session_id(current_session_id);
-			
-			client.send(current_topic, {
-				text:'dssdjfkjkl'
-			},function(){
-				// alert('Message received by server!');
-			},function(error){
-				alert('There was a problem: ' + error.message);
-			});
-		},1000);
 	}
 	
 	function leave(){
@@ -206,6 +192,8 @@ Zepto(function($){
 		}
 	}
 	
+	var last_msg = '';
+	
 	function init_with_chat(){
 		var current_user = config.get_current_user();	
 		var current_session = config.get_current_session();
@@ -236,6 +224,12 @@ Zepto(function($){
 		// 加入到聊天
 		client.join(current_topic, function(message) {
 		  // handle message
+			
+			if(last_msg == message){
+				return;
+			}
+			
+			last_msg = message;
 			
 			// 只收不存，存的事儿交给Message Listners
 			write_msg_content_to_dom(message);
@@ -474,6 +468,15 @@ Zepto(function($){
 		if(case_one(url,/\//g)){
 			// alert("首页");
 			// $('.content').html(index_content)
+			var current_session = config.get_current_session();;
+			var current_session_id = current_session['sid'];
+			
+			var current_topic = config.get_current_topic_with_session_id(current_session_id);
+			// 加入到聊天
+			client.leave(current_topic,function(){
+				console.log("leave...");
+			})
+				
 			main();
 		}
 		

@@ -492,6 +492,8 @@ Class('SessionLisner',messageBase, {
 		this.config = ichat_config;
 		this.client = this.config.get_client();
 		this.last_msg_id = undefined;
+		this.stop_observe();
+		this.last_msg = "";
 	},
 	start_observe:function(){
 		var current_session_id = this.session['sid'];
@@ -501,15 +503,28 @@ Class('SessionLisner',messageBase, {
 		this.client.join(current_topic, function(message) {
 		  // handle message
 			
-			if(_instance.last_msg_id != message.mid){
+			if(_instance.last_msg != message){
 				console.log('收到的信息是：'+message.text);
+				
+				
 				//TODO: 写到websql里
 				_instance.save_message_to_web_sql(message);
 				
-				_instance.last_msg_id = message.mid;
+				_instance.last_msg = message;
 			}else{
 				console.log('收到的信息是重复的，丢弃');
 			}
+		});
+	},
+	stop_observe:function(){
+		var current_session_id = this.session['sid'];
+		var current_topic = this.config.get_current_topic_with_session_id(current_session_id);
+	
+		var _instance = this;
+		this.client.leave(current_topic, function() {
+		  // handle message
+			console.log('leave...');
+		 
 		});
 	},
 	save_message_to_web_sql:function(message){

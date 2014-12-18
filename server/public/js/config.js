@@ -182,6 +182,7 @@ window.ichat_config = {
 		if(window.chat_singlton_client == undefined){
 			window.chat_singlton_client = new iChatClient(this.chat_server_options);
 		}
+		window.chat_singlton_client.leave_all();
 		return window.chat_singlton_client;
 	},
 	get_chat_server_url : function(){

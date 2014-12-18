@@ -81,6 +81,11 @@ client.join('a_chat_id',function(message) {
 iChatClient.prototype.join = function(chat_id,cb){
 	var topic = '/' + chat_id;
 	
+	if(this.is_exist(chat_id) == true){
+		this.log('chat_id以及存在了');
+		return;
+	}
+	
 	var subscription = this.client.subscribe(topic, cb);
 	
 	this.add({
@@ -122,7 +127,7 @@ iChatClient.prototype.search = function(chat_id, limit){
 iChatClient.prototype.leave = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
 	
-	if(this.is_exist != true){
+	if(this.is_exist(chat_id) != true){
 		return;
 	}
 
@@ -134,6 +139,21 @@ iChatClient.prototype.leave = function(chat_id, cb){
 			cb();
 		}
 	});
+}
+
+iChatClient.prototype.leave_all = function( cb){
+	for(var i in this.subs){
+		var obj = this.subs[i];
+		var chat_id = obj.chat_id
+		var sub = obj.subscription;
+		sub.cancel();
+	
+		if(cb){
+			cb();
+		}
+	}
+	
+	this.subs = [];
 }
 
 iChatClient.prototype.send = function(topic, message, cb_received_by_server, cb_error){
@@ -167,4 +187,4 @@ iChatClient.prototype.reconnect = function(){
 	// this.client.connect(callback, context);
 }
 
-// module.exports = iChatClient;
+// module.exports = iChatClient;	

@@ -421,7 +421,7 @@ var sessions = {
 }
  
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/index.m', function(req, res) {
   res.render('index', { title: '微信',sessions: sessions.data.sessions });
 });
 

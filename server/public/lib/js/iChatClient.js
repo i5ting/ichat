@@ -121,6 +121,10 @@ iChatClient.prototype.search = function(chat_id, limit){
 
 iChatClient.prototype.leave = function(chat_id, cb){
 	this.log(' chat_id = ' + chat_id);
+	
+	if(this.is_exist != true){
+		return;
+	}
 
 	this.fetch(chat_id, function(obj){
 		var sub = obj.subscription;

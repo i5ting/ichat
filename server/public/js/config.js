@@ -116,7 +116,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
     return fmt;
 }
  
-
+window.chat_singlton_client = undefined;
 window.ichat_config = {
 	version: 'v0.1.0',
 	debug:true,
@@ -179,7 +179,10 @@ window.ichat_config = {
 		alert('sql 执行出错');
 	},
 	get_client:function(){
-		return new iChatClient(this.chat_server_options);
+		if(window.chat_singlton_client == undefined){
+			window.chat_singlton_client = new iChatClient(this.chat_server_options);
+		}
+		return window.chat_singlton_client;
 	},
 	get_chat_server_url : function(){
 		return 'http://' + this.chat_server_url + '/faye'
@@ -354,7 +357,7 @@ Class('Message', messageBase, {
 		// this.create();
 		
 		this.db = new Collection('Message');
-		// this.db.use_websql();
+		this.db.use_websql();
 	},
 	values:function(obj){
 		Class('Dummy', obj);
@@ -474,6 +477,7 @@ Message.get_messages_with_current_session = function(cb){
 	//
 	
 	var collection = new Collection('Message');
+	collection.use_websql();
 	
 	var obj = {
 		cuid : cuid,
@@ -494,16 +498,22 @@ Class('SessionLisner',messageBase, {
 		this.last_msg_id = undefined;
 		this.stop_observe();
 		this.last_msg = "";
+		this.topic_queue = [];
 	},
 	start_observe:function(){
 		var current_session_id = this.session['sid'];
 		var current_topic = this.config.get_current_topic_with_session_id(current_session_id);
 	
 		var _instance = this;
+		console.log("开始关注topic=" + current_topic);
+		
+		this.topic_queue.push(current_topic);
+		
 		this.client.join(current_topic, function(message) {
 		  // handle message
 			
-			if(_instance.last_msg != message){
+			console.log("最近2条信息是一样的。" + _instance.last_msg != message)
+			if(_instance.last_msg =="" &&_instance.last_msg != message){
 				console.log('收到的信息是：'+message.text);
 				
 				
@@ -526,6 +536,15 @@ Class('SessionLisner',messageBase, {
 			console.log('leave...');
 		 
 		});
+	},
+	stop_all_observe:function(){
+		for(var i in this.topic_queue){
+			var topic = this.topic_queue[i];
+			this.client.leave(topic, function() {
+			  // handle message
+				console.log('stop_all_observe leave.' + topic + '..');
+			});
+		}
 	},
 	save_message_to_web_sql:function(message){
 		var msg = new Message();

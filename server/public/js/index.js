@@ -2,7 +2,8 @@ Zepto(function($){
   console.log('Ready to Zepto!')
   console.log('Ready to Zepto!')
 	var config = window.ichat_config;
-		
+	
+	var session_lisner;
 	var myScroll;
 	// var current_user = config.get_current_user();
 	// var current_session = config.get_current_session();
@@ -179,8 +180,8 @@ Zepto(function($){
 	
 	function current_session_lisner(){
 		var one_session = CURRENT_SESSION.get_current_session();
-		var session = new SessionLisner(one_session);
-		session.start_observe();
+		session_lisner = new SessionLisner(one_session);
+		session_lisner.start_observe();
 	}
 	
 	function bind_enter_event(){
@@ -206,8 +207,6 @@ Zepto(function($){
 		
 		var title = '<font color=blue>正在和【'+ current_session_name + '】聊天中</font>';
 		$('.title').html(title);
-		
-		current_session_lisner();
 		
 		Message.get_messages_with_current_session(function(messages){
 			for(var i in messages){
@@ -353,6 +352,8 @@ Zepto(function($){
 		var i  = $('#chat_session_container').children('li').index(c)
 		var sesssion = JSON.parse($(c).attr('data'));
 		storage_current_sesssion(sesssion);
+		// 开始监听此topic，接收聊天记录
+		current_session_lisner();
 	});
 	
 	/**
@@ -465,18 +466,11 @@ Zepto(function($){
 		}
 		
 		
-		if(case_one(url,/\//g)){
+		if(case_one(url,/index\.m/g)){
 			// alert("首页");
-			// $('.content').html(index_content)
-			var current_session = config.get_current_session();;
-			var current_session_id = current_session['sid'];
+			// 移除所有关注topic
+			session_lisner.stop_all_observe();
 			
-			var current_topic = config.get_current_topic_with_session_id(current_session_id);
-			// 加入到聊天
-			client.leave(current_topic,function(){
-				console.log("leave...");
-			})
-				
 			main();
 		}
 		

@@ -184,6 +184,20 @@ window.ichat_config = {
 		}
 		return window.chat_singlton_client;
 	},
+	save_message_to_web_sql:function(message){
+		var msg = new Message();
+		msg.type = message.type;
+		msg.mid = message.mid;
+		msg.uid = message.uid;
+		msg.uname = message.uname;
+		msg.avatar = message.avatar;
+		msg.sid = message.sid;
+		msg.sname= message.sname;
+		msg.timestamp = message.timestamp;
+		msg.msg = message.msg;
+		 
+		msg.save();
+	},
 	get_chat_server_url : function(){
 		return 'http://' + this.chat_server_url + '/faye'
 	},

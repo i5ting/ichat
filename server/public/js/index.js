@@ -228,6 +228,8 @@ Zepto(function($){
 				return;
 			}
 			
+			config.save_message_to_web_sql(message);
+			
 			last_msg = message;
 			
 			// 只收不存，存的事儿交给Message Listners
@@ -353,7 +355,7 @@ Zepto(function($){
 		var sesssion = JSON.parse($(c).attr('data'));
 		storage_current_sesssion(sesssion);
 		// 开始监听此topic，接收聊天记录
-		current_session_lisner();
+		// current_session_lisner();
 	});
 	
 	/**

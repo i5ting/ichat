@@ -469,7 +469,7 @@ Zepto(function($){
 		if(case_one(url,/index\.m/g)){
 			// alert("首页");
 			// 移除所有关注topic
-			session_lisner.stop_all_observe();
+			// session_lisner.stop_all_observe();
 			
 			main();
 		}

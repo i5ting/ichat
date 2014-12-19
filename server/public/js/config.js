@@ -182,7 +182,6 @@ window.ichat_config = {
 		if(window.chat_singlton_client == undefined){
 			window.chat_singlton_client = new iChatClient(this.chat_server_options);
 		}
-		window.chat_singlton_client.leave_all();
 		return window.chat_singlton_client;
 	},
 	get_chat_server_url : function(){
@@ -497,7 +496,7 @@ Class('SessionLisner',messageBase, {
 		this.config = ichat_config;
 		this.client = this.config.get_client();
 		this.last_msg_id = undefined;
-		this.stop_observe();
+		// this.stop_observe();
 		this.last_msg = "";
 		this.topic_queue = [];
 	},
@@ -514,7 +513,7 @@ Class('SessionLisner',messageBase, {
 		  // handle message
 			
 			console.log("最近2条信息是一样的。" + _instance.last_msg != message)
-			if(_instance.last_msg =="" &&_instance.last_msg != message){
+			if(_instance.last_msg != message){
 				console.log('收到的信息是：'+message.text);
 				
 				

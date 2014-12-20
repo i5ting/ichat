@@ -465,6 +465,7 @@ Zepto(function($){
 		if(case_one(url,/me\.html/g)){
 			// alert("聊天");
 			login_init()
+			init_with_me();
 		}
 		
 		
